@@ -11,7 +11,7 @@
   /* =============================================================
      CONFIGURATION — Update APPS_SCRIPT_URL after deploying
      ============================================================= */
-  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzOdN_ws0Po-yhW3MexyoaBL1wKEqPgPYxesM98iGLYYcwJTEGLOU1BQq0LDEsy_UA5gQ/exec';
+  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbweZI4__iaAg5-AyTIPFPs0Wlc0tXhViXMwwQ5UKn6cLO6_XDmuxmIh7T3QLAihhsABKg/exec';
 
   /* =============================================================
      STATE
