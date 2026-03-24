@@ -22,6 +22,26 @@
   var activePopover = null;
   var activePanel = null;
 
+  // Brand colors for different commenters
+  var AUTHOR_COLORS = [
+    '#E523FF', // fuchsia
+    '#00D0E0', // agave
+    '#3BD85E', // kiwi
+    '#FF5C37', // tomato
+    '#3D6AFF', // superblue
+    '#FF6C7A', // watermelon
+    '#FFE01B'  // cavendish
+  ];
+  var authorColorMap = {};
+
+  function getAuthorColor(author) {
+    if (!authorColorMap[author]) {
+      var idx = Object.keys(authorColorMap).length % AUTHOR_COLORS.length;
+      authorColorMap[author] = AUTHOR_COLORS[idx];
+    }
+    return authorColorMap[author];
+  }
+
   /* =============================================================
      CSS INJECTION
      ============================================================= */
@@ -354,12 +374,19 @@
     el.style.left = (pos.x - 16) + 'px';
     el.style.top = (pos.y - 44) + 'px';
 
+    var authorColor = getAuthorColor(pinData.author);
+
     var dot = document.createElement('div');
     dot.className = 'review-pin__dot' + (pinData.resolved ? ' review-pin__dot--resolved' : '');
     dot.textContent = (index + 1);
+    if (!pinData.resolved) {
+      dot.style.background = authorColor;
+      dot.style.boxShadow = '0 2px 12px ' + authorColor + '66, 0 0 0 3px rgba(255,255,255,0.9)';
+    }
 
     var tail = document.createElement('div');
     tail.className = 'review-pin__tail';
+    if (!pinData.resolved) tail.style.background = authorColor;
 
     el.appendChild(dot);
     el.appendChild(tail);
@@ -590,6 +617,11 @@
       e.stopPropagation();
       pinData.resolved = true;
       localStorage.setItem('vec-review-pins', JSON.stringify(pins));
+      // Sync resolve to Google Sheet
+      if (APPS_SCRIPT_URL.indexOf('__REPLACE') !== 0) {
+        fetch(APPS_SCRIPT_URL + '?action=resolve&id=' + encodeURIComponent(pinData.id))
+          .catch(function (err) { console.error('[Review] Failed to resolve on sheet:', err); });
+      }
       closeCommentPanel();
       renderAllPins();
       showToast('Comment resolved');
@@ -665,8 +697,8 @@
         commentsHTML += [
           '<div class="review-panel__comment" style="cursor:pointer;" data-pin-index="' + i + '">',
           '  <div style="display:flex;justify-content:space-between;align-items:center;">',
-          '    <div class="review-panel__author">' + pin.author + '</div>',
-          '    <span style="font-family:DM Mono,monospace;font-size:10px;letter-spacing:0.1em;color:#E523FF;background:rgba(229,35,255,0.08);padding:3px 8px;border-radius:6px;">' + (pin.sectionId || 'page') + '</span>',
+          '    <div class="review-panel__author"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:' + getAuthorColor(pin.author) + ';margin-right:8px;"></span>' + pin.author + '</div>',
+          '    <span style="font-family:DM Mono,monospace;font-size:10px;letter-spacing:0.1em;color:' + getAuthorColor(pin.author) + ';background:' + getAuthorColor(pin.author) + '14;padding:3px 8px;border-radius:6px;">' + (pin.sectionId || 'page') + '</span>',
           '  </div>',
           '  <div class="review-panel__time">' + timeStr + '</div>',
           '  <div class="review-panel__text">' + pin.text.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>',
@@ -724,6 +756,11 @@
         if (pin) {
           pin.resolved = true;
           localStorage.setItem('vec-review-pins', JSON.stringify(pins));
+          // Sync resolve to Google Sheet
+          if (APPS_SCRIPT_URL.indexOf('__REPLACE') !== 0) {
+            fetch(APPS_SCRIPT_URL + '?action=resolve&id=' + encodeURIComponent(pinId))
+              .catch(function (err) { console.error('[Review] Failed to resolve on sheet:', err); });
+          }
         }
         // Remove this comment card from the panel with animation
         var card = btn.closest('.review-panel__comment');

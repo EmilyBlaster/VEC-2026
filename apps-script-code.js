@@ -19,6 +19,11 @@ function doGet(e) {
     return writeComment(params);
   }
 
+  // If action=resolve, mark a comment as resolved
+  if (params.action === 'resolve') {
+    return resolveComment(params.id);
+  }
+
   // Otherwise, return all comments
   return readComments();
 }
@@ -68,6 +73,26 @@ function writeComment(params) {
 
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok', id: params.id }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function resolveComment(commentId) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Sheet1');
+  var data = sheet.getDataRange().getValues();
+  var idCol = data[0].indexOf('id');
+  var resolvedCol = data[0].indexOf('resolved');
+
+  for (var i = 1; i < data.length; i++) {
+    if (data[i][idCol] === commentId) {
+      sheet.getRange(i + 1, resolvedCol + 1).setValue(true);
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: 'ok', resolved: commentId }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+  }
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'not_found', id: commentId }))
     .setMimeType(ContentService.MimeType.JSON);
 }
 
