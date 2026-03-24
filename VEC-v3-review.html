@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual Educator Conference 2026 — Intuit for Education</title>
+
+<!-- DM Mono only — Avenir Next loaded locally via @font-face -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* =============================================================
+   @FONT-FACE — Avenir Next for Intuit (local /Fonts folder)
+   Fallback: Montserrat from system or Google Fonts
+   ============================================================= */
+@font-face {
+  font-family: 'Avenir Next Intuit';
+  src: url('Fonts/AvenirNext-forINTUIT-Web-Fonts/AvenirNext%20forINTUIT%20W05%20Heavy_web.woff2') format('woff2'),
+       url('Fonts/AvenirNext-forINTUIT-Web-Fonts/AvenirNext%20forINTUIT%20W05%20Heavy_web.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Avenir Next Intuit';
+  src: url('Fonts/AvenirNext-forINTUIT-Web-Fonts/AvenirNext%20forINTUIT%20W05 Bold_web.woff2') format('woff2'),
+       url('Fonts/AvenirNext-forINTUIT-Web-Fonts/AvenirNext%20forINTUIT%20W05 Bold_web.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Avenir Next Intuit';
+  src: url('Fonts/AvenirNext-forINTUIT-Web-Fonts/AvenirNext%20forINTUIT%20W05 Demi_web.woff2') format('woff2'),
+       url('Fonts/AvenirNext-forINTUIT-Web-Fonts/AvenirNext%20forINTUIT%20W05 Demi_web.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Avenir Next Intuit';
+  src: url('Fonts/AvenirNext-forINTUIT-Web-Fonts/AvenirNext%20forINTUIT%20W05 Mediu_web.woff2') format('woff2'),
+       url('Fonts/AvenirNext-forINTUIT-Web-Fonts/AvenirNext%20forINTUIT%20W05 Mediu_web.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Avenir Next Intuit';
+  src: url('Fonts/AvenirNext-forINTUIT-Web-Fonts/AvenirNext%20forINTUIT%20W05 Rg_web.woff2') format('woff2'),
+       url('Fonts/AvenirNext-forINTUIT-Web-Fonts/AvenirNext%20forINTUIT%20W05 Rg_web.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =============================================================
+   CSS CUSTOM PROPERTIES
+   ============================================================= */
+:root {
+  /* Official Intuit for Education accent colors */
+  --fuchsia:    #E523FF;
+  --agave:      #00D0E0;
+  --kiwi:       #3BD85E;
+  --cavendish:  #FFE01B;
+  --tomato:     #FF5C37;
+  --watermelon: #FF6C7A;
+  --superblue:  #3D6AFF;
+
+  /* Neutrals */
+  --navy:       #060B2B;
+  --navy-mid:   #0D1650;
+  --cream:      #F5F3EE;
+  --white:      #FFFFFF;
+
+  /* Glass */
+  --glass-bg:     rgba(255,255,255,0.07);
+  --glass-border: rgba(255,255,255,0.14);
+
+  /* Fonts */
+  --font-display: 'Avenir Next Intuit', 'Montserrat', sans-serif;
+  --font-body:    'Avenir Next Intuit', 'Montserrat', sans-serif;
+  --font-mono:    'DM Mono', monospace;
+
+  /* Layout */
+  --max-w: 1280px;
+  --radius-card: 20px;
+  --radius-pill: 100px;
+}
+
+/* =============================================================
+   RESET
+   ============================================================= */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* =============================================================
+   UTILITY
+   ============================================================= */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+/* =============================================================
+   SECTION LABELS (mono eyebrow)
+   ============================================================= */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+}
+.section-label--light { color: rgba(255,255,255,0.5); }
+.section-label--light::before { background: rgba(255,255,255,0.3); }
+.section-label--dark { color: rgba(6,11,43,0.45); }
+.section-label--dark::before { background: rgba(6,11,43,0.25); }
+
+/* =============================================================
+   BUTTONS
+   ============================================================= */
+.btn {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.9rem 2.2rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: inline-block;
+  text-align: center;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--primary { background: var(--superblue); color: var(--white); }
+.btn--primary:hover { box-shadow: 0 8px 32px rgba(61,106,255,0.55); }
+.btn--ghost { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.3); }
+.btn--ghost:hover { border-color: rgba(255,255,255,0.7); }
+.btn--kiwi { background: var(--kiwi); color: var(--navy); }
+.btn--kiwi:hover { box-shadow: 0 8px 32px rgba(59,216,94,0.45); }
+
+/* =============================================================
+   SCROLL REVEAL — elements start invisible, animate in via JS
+   ============================================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =============================================================
+   NAVIGATION
+   ============================================================= */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 68px;
+  display: flex; align-items: center; padding: 0 2.5rem;
+  background: rgba(6,11,43,0.6);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.3s;
+}
+.nav.scrolled { background: rgba(6,11,43,0.92); }
+.nav__logo { display: flex; align-items: center; gap: 0.75rem; }
+.nav__logo img { height: 28px; width: auto; mix-blend-mode: screen; }
+.nav__divider { width: 1px; height: 28px; background: rgba(255,255,255,0.18); }
+.nav__event {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.4;
+}
+.nav__links {
+  display: flex; align-items: center; gap: 2rem; margin-left: auto;
+}
+.nav__links a {
+  font-size: 0.85rem; font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  transition: color 0.2s;
+}
+.nav__links a:hover { color: var(--white); }
+.btn-nav {
+  background: var(--superblue); color: var(--white) !important;
+  padding: 0.5rem 1.3rem; border-radius: var(--radius-pill);
+  font-weight: 700 !important; font-size: 0.82rem;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+}
+.btn-nav:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(61,106,255,0.5) !important; }
+
+/* Mobile hamburger — hidden on desktop */
+.nav__hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+.nav__hamburger span {
+  display: block; width: 22px; height: 2px; background: var(--white);
+  margin: 5px 0; transition: transform 0.3s, opacity 0.3s;
+}
+
+/* =============================================================
+   HERO — Mode A Fuchsia Dominant
+   ============================================================= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 14rem 2rem 10rem;
+  overflow: hidden;
+}
+
+/* Base layer — vivid fuchsia so there's never a dark void */
+.hero__gradient {
+  position: absolute; inset: 0;
+  background: #CC10EE;
+}
+
+/* Blob system — 6 independently animated blobs */
+.hero__blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* BLOB 1 — Fuchsia, large, top-right dominant mass */
+.hero__blob--1 {
+  width: 85vw; height: 85vw;
+  max-width: 900px; max-height: 900px;
+  background: radial-gradient(circle, var(--fuchsia) 0%, transparent 70%);
+  filter: blur(45px);
+  top: -20%; right: -15%;
+  animation: blob1 16s ease-in-out infinite alternate;
+}
+@keyframes blob1 {
+  0%   { transform: translate(0,0) scale(1); }
+  25%  { transform: translate(-14vw, 10vh) scale(1.2); }
+  50%  { transform: translate(-6vw, 18vh) scale(0.9); }
+  75%  { transform: translate(-18vw, 6vh) scale(1.15); }
+  100% { transform: translate(-10vw, 14vh) scale(1.08); }
+}
+
+/* BLOB 2 — Fuchsia, lower-right fill */
+.hero__blob--2 {
+  width: 70vw; height: 70vw;
+  max-width: 750px; max-height: 750px;
+  background: radial-gradient(circle, var(--fuchsia) 0%, transparent 70%);
+  filter: blur(70px);
+  bottom: -25%; right: -10%;
+  animation: blob2 22s ease-in-out infinite alternate;
+}
+@keyframes blob2 {
+  0%   { transform: translate(0,0) scale(1); }
+  33%  { transform: translate(-16vw,-12vh) scale(1.2); }
+  66%  { transform: translate(-8vw,-20vh) scale(0.85); }
+  100% { transform: translate(-20vw,-8vh) scale(1.15); }
+}
+
+/* BLOB 3 — Agave, left edge cyan soul */
+.hero__blob--3 {
+  width: 55vw; height: 100vh;
+  max-width: 600px;
+  background: radial-gradient(ellipse, var(--agave) 0%, transparent 65%);
+  filter: blur(80px);
+  top: 0; left: -20%;
+  animation: blob3 25s ease-in-out infinite alternate;
+}
+@keyframes blob3 {
+  0%   { transform: translate(0,0) scale(1); }
+  30%  { transform: translate(8vw, 14vh) scale(1.18); }
+  60%  { transform: translate(4vw, 22vh) scale(0.88); }
+  100% { transform: translate(10vw, 8vh) scale(1.12); }
+}
+
+/* BLOB 4 — Tomato, warm pocket center-bottom */
+.hero__blob--4 {
+  width: 50vw; height: 50vw;
+  max-width: 520px; max-height: 520px;
+  background: radial-gradient(circle, var(--tomato) 0%, transparent 65%);
+  filter: blur(75px);
+  bottom: -10%; left: 30%;
+  animation: blob4 20s ease-in-out infinite alternate;
+}
+@keyframes blob4 {
+  0%   { transform: translate(0,0) scale(1); }
+  40%  { transform: translate(14vw,-16vh) scale(1.25); }
+  70%  { transform: translate(-8vw,-10vh) scale(0.85); }
+  100% { transform: translate(6vw,-18vh) scale(1.12); }
+}
+
+/* BLOB 5 — Fuchsia mid-canvas fill, slow drift */
+.hero__blob--5 {
+  width: 60vw; height: 60vw;
+  max-width: 640px; max-height: 640px;
+  background: radial-gradient(circle, var(--fuchsia) 0%, transparent 70%);
+  filter: blur(90px);
+  top: 15%; left: 25%;
+  opacity: 0.75;
+  animation: blob5 28s ease-in-out infinite alternate;
+}
+@keyframes blob5 {
+  0%   { transform: translate(0,0) scale(1); }
+  25%  { transform: translate(6vw,-5vh) scale(1.18); }
+  50%  { transform: translate(-8vw,8vh) scale(0.85); }
+  75%  { transform: translate(10vw,3vh) scale(1.12); }
+  100% { transform: translate(-3vw,-9vh) scale(1.0); }
+}
+
+/* BLOB 6 — Agave second shimmer */
+.hero__blob--6 {
+  width: 40vw; height: 40vw;
+  max-width: 420px; max-height: 420px;
+  background: radial-gradient(circle, var(--agave) 0%, transparent 65%);
+  filter: blur(85px);
+  top: 30%; left: 10%;
+  opacity: 0.5;
+  animation: blob6 32s ease-in-out infinite alternate;
+}
+@keyframes blob6 {
+  0%   { transform: translate(0,0) scale(1); }
+  35%  { transform: translate(12vw,10vh) scale(1.25); }
+  70%  { transform: translate(5vw,-8vh) scale(0.8); }
+  100% { transform: translate(18vw,4vh) scale(1.15); }
+}
+
+/* Noise texture overlay */
+.hero__noise {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 180px;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Single large 3D piggy bank — rocking motion, pushed right */
+.hero__piggy {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  width: clamp(240px, 30vw, 440px);
+  right: -3%;
+  top: 50%;
+  margin-top: -14vw;
+  animation: piggyRock 6s ease-in-out infinite;
+}
+.hero__piggy img {
+  mix-blend-mode: screen;
+  width: 100%;
+}
+@keyframes piggyRock {
+  0%   { transform: rotateY(0deg) rotateZ(0deg) translateY(0); }
+  25%  { transform: rotateY(15deg) rotateZ(-3deg) translateY(-10px); }
+  50%  { transform: rotateY(0deg) rotateZ(0deg) translateY(0); }
+  75%  { transform: rotateY(-15deg) rotateZ(3deg) translateY(-8px); }
+  100% { transform: rotateY(0deg) rotateZ(0deg) translateY(0); }
+}
+
+/* Floating decorative icons */
+.float-icon {
+  position: absolute;
+  pointer-events: none;
+  z-index: 3;
+}
+.float-icon img {
+  mix-blend-mode: screen;
+  width: 100%;
+}
+/* Diamond — top-left of hero */
+.float-icon--diamond {
+  width: clamp(130px, 14vw, 200px);
+  transform: rotate(20deg);
+  animation: floatSpin 12s ease-in-out infinite;
+}
+.float-icon--diamond-2 {
+  width: clamp(80px, 9vw, 130px);
+  transform: rotate(-20deg);
+  animation: floatSpin 15s ease-in-out infinite reverse;
+}
+/* Coins — bottom of marquee area */
+.float-icon--coins {
+  width: clamp(180px, 22vw, 340px);
+  z-index: 2;
+}
+.float-icon--coins img {
+  mix-blend-mode: normal;
+}
+@keyframes floatSpin {
+  0%   { transform: translate(0,0) rotate(0deg); }
+  33%  { transform: translate(10px, -15px) rotate(12deg); }
+  66%  { transform: translate(-8px, 10px) rotate(-8deg); }
+  100% { transform: translate(0,0) rotate(0deg); }
+}
+
+/* Hero content */
+.hero__content { position: relative; z-index: 2; max-width: 880px; }
+.hero__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+}
+.hero__eyebrow::before, .hero__eyebrow::after {
+  content: ''; display: block; width: 28px; height: 1px;
+  background: rgba(255,255,255,0.4);
+}
+.hero__headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 60px rgba(0,0,0,0.3);
+}
+.hero__headline em {
+  font-style: normal;
+  background: linear-gradient(90deg, var(--cavendish), var(--tomato));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero__sub {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 400;
+  color: rgba(255,255,255,0.78);
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+.hero__badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-pill);
+  padding: 0.5rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 2.5rem;
+}
+.badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--kiwi);
+  animation: pulseDot 1.6s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+.hero__ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+
+
+/* =============================================================
+   STATS BAR
+   ============================================================= */
+.stats {
+  background: var(--navy-mid);
+  padding: 3.5rem 2rem;
+  position: relative;
+  z-index: 5;
+}
+.stats__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2rem; text-align: center;
+}
+.stat__number {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--agave);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.stat__label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+/* =============================================================
+   CURVED TEXT MARQUEE — Dreamforce-style large arc
+   ============================================================= */
+.marquee-section {
+  background: linear-gradient(180deg, #DCE8F8 0%, #E8EEF8 30%, var(--cream) 100%);
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+/* Curved text arc — gentle bowl like Dreamforce */
+.marquee-arc {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+}
+.marquee-arc svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.marquee-arc text {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 140px;
+  fill: var(--superblue);
+  letter-spacing: -0.02em;
+}
+/* Floating coins — centered below arc */
+.marquee-section .float-icon--coins {
+  position: relative;
+  margin: -18rem auto 0;
+  display: block;
+  text-align: center;
+  animation: floatSpin 16s ease-in-out infinite;
+}
+
+/* =============================================================
+   KEYNOTE SPOTLIGHT
+   ============================================================= */
+.keynote {
+  background: var(--navy);
+  padding: 10rem 2rem 12rem;
+  position: relative;
+  overflow: hidden;
+}
+/* Curved bottom edge — matches speakers cutout */
+.keynote::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140%;
+  height: 100px;
+  background: var(--white);
+  border-radius: 50% 50% 0 0;
+  z-index: 2;
+}
+.keynote::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 30% 50%, rgba(229,35,255,0.12), transparent);
+  pointer-events: none;
+}
+.keynote__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+}
+.keynote__text { position: relative; z-index: 1; }
+.keynote__headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 1.5rem 0;
+}
+.keynote__desc {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+.keynote__visual {
+  position: relative;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, rgba(229,35,255,0.2), rgba(61,106,255,0.2));
+  border: 1px solid var(--glass-border);
+}
+.keynote__visual img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+
+/* =============================================================
+   COMMUNITY PHOTO GRID
+   ============================================================= */
+/* =============================================================
+   COMMUNITY PHOTO GRID — Light bg, Dreamforce-style with counters
+   ============================================================= */
+.community {
+  background: linear-gradient(180deg, var(--white) 0%, #F0F0FF 100%);
+  padding: 1rem 2rem 6rem;
+  position: relative;
+}
+.community__header {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--navy);
+}
+.community__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: -0.03em;
+  margin-top: 1rem;
+  color: var(--navy);
+}
+.community__grid {
+  max-width: var(--max-w); margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  gap: 1rem;
+}
+.community__tile {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.4s ease;
+}
+.community__tile:hover { transform: scale(1.03); }
+.community__tile img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block;
+}
+/* Placeholder gradient fills */
+.community__tile--placeholder {
+  display: flex; align-items: flex-end; padding: 1.2rem;
+  min-height: 200px;
+}
+.community__tile--tall { grid-row: span 2; min-height: 420px; }
+.community__tile--wide { grid-column: span 2; }
+/* Wild brand gradients — rich, saturated */
+.tile-bg-1 { background: linear-gradient(135deg, var(--fuchsia), var(--superblue)); }
+.tile-bg-2 { background: linear-gradient(135deg, var(--agave), var(--kiwi)); }
+.tile-bg-3 { background: linear-gradient(135deg, var(--tomato), var(--watermelon)); }
+.tile-bg-4 { background: linear-gradient(135deg, var(--superblue), var(--fuchsia)); }
+.tile-bg-5 { background: linear-gradient(135deg, var(--kiwi), var(--agave)); }
+.tile-bg-6 { background: linear-gradient(135deg, var(--watermelon), var(--fuchsia)); }
+/* Counter stat overlay on tiles */
+.tile-counter {
+  position: absolute;
+  bottom: 1.2rem; left: 1.2rem;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 1rem 1.4rem;
+}
+.tile-counter__num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 2.2rem;
+  color: var(--navy);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.tile-counter__label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(6,11,43,0.45);
+  margin-top: 0.25rem;
+}
+.tile-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(8px);
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+}
+
+
+
+/* =============================================================
+   WHY ATTEND — Mode B Tomato Dominant
+   ============================================================= */
+.why-attend {
+  position: relative;
+  padding: 7rem 2rem;
+  overflow: hidden;
+  background: #E85A00;
+}
+/* Mode B blob system — same independent animation approach as hero */
+.modeB-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+.modeB-blob--1 {
+  width: 60vw; height: 80vw; max-width: 700px; max-height: 800px;
+  background: radial-gradient(circle, var(--tomato) 0%, transparent 70%);
+  filter: blur(70px);
+  top: -30%; right: -10%;
+  animation: mbBlob1 16s ease-in-out infinite alternate;
+}
+.modeB-blob--2 {
+  width: 50vw; height: 50vw; max-width: 550px; max-height: 550px;
+  background: radial-gradient(circle, var(--agave) 0%, transparent 65%);
+  filter: blur(80px);
+  top: 10%; left: -15%;
+  opacity: 0.7;
+  animation: mbBlob2 22s ease-in-out infinite alternate;
+}
+.modeB-blob--3 {
+  width: 55vw; height: 55vw; max-width: 600px; max-height: 600px;
+  background: radial-gradient(circle, var(--fuchsia) 0%, transparent 65%);
+  filter: blur(75px);
+  bottom: -20%; left: 30%;
+  opacity: 0.6;
+  animation: mbBlob3 19s ease-in-out infinite alternate;
+}
+.modeB-blob--4 {
+  width: 45vw; height: 45vw; max-width: 500px; max-height: 500px;
+  background: radial-gradient(circle, #E87A00 0%, transparent 65%);
+  filter: blur(65px);
+  top: 20%; right: 20%;
+  animation: mbBlob4 24s ease-in-out infinite alternate;
+}
+@keyframes mbBlob1 {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(-8vw,10vh) scale(1.15); }
+  100% { transform: translate(-4vw,5vh) scale(0.95); }
+}
+@keyframes mbBlob2 {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(6vw,-8vh) scale(1.1); }
+  100% { transform: translate(3vw,4vh) scale(1.05); }
+}
+@keyframes mbBlob3 {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(-5vw,-10vh) scale(1.2); }
+  100% { transform: translate(8vw,-3vh) scale(0.9); }
+}
+@keyframes mbBlob4 {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(6vw,8vh) scale(1.1); }
+  100% { transform: translate(-4vw,-6vh) scale(1.05); }
+}
+/* Noise on Mode B */
+.why-attend::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)'/%3E%3C/svg%3E");
+  background-size: 200px;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.why-attend__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.why-attend__header { text-align: center; margin-bottom: 3.5rem; }
+.why-attend__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  letter-spacing: -0.03em;
+  margin-top: 1rem;
+}
+.why-attend__cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.wa-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  padding: 2.5rem 1.8rem;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+.wa-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+.wa-card__number {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 2.5rem;
+  line-height: 1;
+  margin-bottom: 1rem;
+  opacity: 0.3;
+}
+.wa-card__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+.wa-card__desc {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.65;
+}
+
+/* =============================================================
+   AGENDA — Light session track cards
+   ============================================================= */
+.agenda {
+  background: linear-gradient(180deg, var(--cream) 0%, #E8F0FF 50%, var(--cream) 100%);
+  color: var(--navy);
+  padding: 7rem 2rem;
+  position: relative;
+}
+.agenda__inner { max-width: var(--max-w); margin: 0 auto; }
+.agenda__header { text-align: center; margin-bottom: 3.5rem; }
+.agenda__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  letter-spacing: -0.03em;
+  color: var(--navy);
+  margin-top: 1rem;
+}
+.agenda__subtitle {
+  font-size: 1.05rem;
+  color: rgba(6,11,43,0.55);
+  margin-top: 0.75rem;
+  max-width: 560px;
+  margin-left: auto; margin-right: auto;
+}
+.agenda__tracks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  position: relative;
+}
+.track-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2.5rem 2rem 2rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.track-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  opacity: 0.12;
+  z-index: 0;
+}
+.track-card > * { position: relative; z-index: 1; }
+.track-card--blue::before  { background: linear-gradient(135deg, var(--fuchsia), var(--superblue), var(--agave)); opacity: 0.15; }
+.track-card--red::before   { background: linear-gradient(135deg, var(--tomato), var(--fuchsia), var(--watermelon)); opacity: 0.15; }
+.track-card--orange::before { background: linear-gradient(135deg, var(--cavendish), var(--tomato), var(--fuchsia)); opacity: 0.15; }
+.track-card--green::before { background: linear-gradient(135deg, var(--kiwi), var(--agave), var(--superblue)); opacity: 0.15; }
+.track-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(6,11,43,0.12);
+}
+.track-card__room {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.track-card__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--navy);
+  margin: 0.6rem 0;
+  letter-spacing: -0.02em;
+}
+.track-card__sessions {
+  font-size: 0.9rem;
+  color: rgba(6,11,43,0.55);
+  line-height: 1.65;
+  margin-bottom: 1.2rem;
+}
+.track-card__count {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-pill);
+  display: inline-block;
+}
+.track-card--blue .track-card__count  { background: rgba(61,106,255,0.1); color: var(--superblue); }
+.track-card--red .track-card__count   { background: rgba(196,58,0,0.1); color: #C43A00; }
+.track-card--orange .track-card__count { background: rgba(232,122,0,0.1); color: #E87A00; }
+.track-card--green .track-card__count { background: rgba(59,216,94,0.1); color: #1a8a35; }
+
+/* =============================================================
+   SCHEDULE CUTOUT — Dreamforce day-by-day with speaker cutout
+   ============================================================= */
+.schedule-cutout {
+  background: linear-gradient(180deg, var(--white) 0%, #F0F4FF 100%);
+  padding: 6rem 2rem;
+  color: var(--navy);
+}
+.schedule-cutout__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.schedule-cutout__text { }
+.schedule-cutout__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -0.03em;
+  color: var(--navy);
+  margin: 1rem 0 2rem;
+}
+.day-row {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(6,11,43,0.08);
+}
+.day-row__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--navy);
+  margin-bottom: 0.3rem;
+}
+.day-row__desc {
+  font-size: 0.88rem;
+  color: rgba(6,11,43,0.5);
+  line-height: 1.5;
+}
+.day-row--highlight {
+  background: var(--superblue);
+  color: var(--white);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  border-bottom: none;
+  margin: 0.5rem 0;
+}
+.day-row--highlight .day-row__name { color: var(--white); }
+.day-row--highlight .day-row__desc { color: rgba(255,255,255,0.75); }
+.schedule-cutout__visual {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: linear-gradient(135deg, var(--fuchsia), var(--superblue));
+}
+.schedule-cutout__visual img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+/* Placeholder visual */
+.schedule-cutout__placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: rgba(255,255,255,0.3);
+}
+.schedule-cutout__cta {
+  margin-top: 1.5rem;
+}
+
+/* =============================================================
+   SESSION GLIDESHOW
+   ============================================================= */
+.glide-section {
+  background: var(--navy);
+  padding: 7rem 0;
+  overflow: hidden;
+  position: relative;
+}
+.glide-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(123,0,224,0.15), transparent);
+  pointer-events: none;
+}
+.glide-header { text-align: center; padding: 0 2rem; margin-bottom: 4rem; }
+.glide-header__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: -0.03em;
+  margin-top: 1rem;
+}
+.glide-wrap { position: relative; }
+.glide-track {
+  display: flex; gap: 2rem;
+  padding: 2rem 4rem;
+  transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  will-change: transform;
+}
+.glide-card {
+  flex: 0 0 320px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+.glide-card::before {
+  content: ''; position: absolute; inset: 0;
+  opacity: 0; transition: opacity 0.4s;
+}
+.glide-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 24px 60px rgba(0,0,0,0.3); }
+.glide-card:hover::before { opacity: 1; }
+.glide-card--cyan::before    { background: radial-gradient(ellipse at 50% 0%, rgba(0,208,224,0.15), transparent 60%); }
+.glide-card--magenta::before { background: radial-gradient(ellipse at 50% 0%, rgba(229,35,255,0.15), transparent 60%); }
+.glide-card--blue::before    { background: radial-gradient(ellipse at 50% 0%, rgba(61,106,255,0.2), transparent 60%); }
+.glide-card--green::before   { background: radial-gradient(ellipse at 50% 0%, rgba(59,216,94,0.15), transparent 60%); }
+.glide-card--orange::before  { background: radial-gradient(ellipse at 50% 0%, rgba(255,92,55,0.15), transparent 60%); }
+
+.glide-card__img {
+  width: 180px; height: 140px; object-fit: contain;
+  margin: 0 auto 1.5rem;
+  filter: drop-shadow(0 12px 30px rgba(0,0,0,0.4));
+  mix-blend-mode: screen;
+  transition: transform 0.5s;
+}
+.glide-card:hover .glide-card__img { transform: translateY(-8px) rotate(-2deg) scale(1.08); }
+.glide-card__tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 0.75rem;
+}
+.tag--cyan    { background: rgba(0,208,224,0.15); color: var(--agave); border: 1px solid rgba(0,208,224,0.2); }
+.tag--magenta { background: rgba(229,35,255,0.12); color: #FF80D0; border: 1px solid rgba(229,35,255,0.2); }
+.tag--blue    { background: rgba(61,106,255,0.15); color: #80A8FF; border: 1px solid rgba(61,106,255,0.25); }
+.tag--green   { background: rgba(59,216,94,0.12); color: var(--kiwi); border: 1px solid rgba(59,216,94,0.2); }
+.tag--orange  { background: rgba(255,92,55,0.12); color: var(--tomato); border: 1px solid rgba(255,92,55,0.2); }
+
+.glide-card__title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.15rem; letter-spacing: -0.02em; margin-bottom: 0.5rem;
+}
+.glide-card__desc {
+  font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.65;
+}
+
+/* Glide navigation */
+.glide-nav { display: flex; justify-content: center; align-items: center; gap: 1.5rem; margin-top: 2.5rem; }
+.glide-arrow {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
+  color: var(--white);
+  font-size: 1.1rem;
+}
+.glide-arrow:hover { background: rgba(255,255,255,0.15); }
+.glide-dots { display: flex; gap: 0.5rem; }
+.glide-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+.glide-dot.active { background: var(--superblue); transform: scale(1.3); }
+
+/* =============================================================
+   SPEAKERS
+   ============================================================= */
+.speakers {
+  background: var(--navy);
+  padding: 2rem 2rem 12rem;
+  position: relative;
+  overflow: hidden;
+}
+/* Half-circle cutout at bottom — reveals the light marquee bg behind */
+.speakers::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140%;
+  height: 140px;
+  background: #DCE8F8;
+  border-radius: 50% 50% 0 0;
+}
+.speakers::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 40% at 80% 20%, rgba(61,106,255,0.1), transparent);
+  pointer-events: none;
+}
+.speakers__inner { max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 1; }
+.speakers__header { text-align: center; margin-bottom: 2rem; }
+.speakers__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  letter-spacing: -0.03em;
+  margin-top: 1rem;
+}
+
+/* Speaker photo mosaic */
+.speakers__mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+.speaker-tile {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1;
+  transition: transform 0.4s;
+}
+.speaker-tile:hover { transform: scale(1.04); }
+.speaker-tile__img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+/* Placeholder gradient for speaker tiles */
+.speaker-tile--placeholder {
+  display: flex; align-items: flex-end; justify-content: center;
+  padding: 1.2rem;
+}
+.speaker-tile__info {
+  text-align: center;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  width: 100%;
+}
+.speaker-tile__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+.speaker-tile__role {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+
+/* Speaker detail cards */
+.speakers__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.sp-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+.sp-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.25), 0 0 0 1px rgba(61,106,255,0.3);
+}
+.sp-card__avatar {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1.2rem;
+  border: 2px solid var(--glass-border);
+}
+/* Placeholder avatar */
+.sp-card__avatar--placeholder {
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: var(--white);
+}
+.sp-card__name { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.3rem; }
+.sp-card__title { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 0.75rem; }
+.sp-card__tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-pill);
+}
+
+
+
+/* =============================================================
+   COUNTDOWN — Mode B Tomato Dominant
+   ============================================================= */
+.countdown-section {
+  position: relative;
+  padding: 7rem 2rem;
+  text-align: center;
+  overflow: hidden;
+  background: #E85A00;
+}
+.countdown-section::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n3)'/%3E%3C/svg%3E");
+  background-size: 200px;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.countdown__inner { position: relative; z-index: 1; max-width: var(--max-w); margin: 0 auto; }
+.countdown__headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.03em;
+  margin: 1rem 0 3rem;
+}
+.cd-units { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
+.cd-unit { text-align: center; }
+.cd-unit__num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.8rem, 7vw, 4.5rem);
+  color: var(--agave);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  display: block;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 0.85rem 1.4rem;
+  min-width: 110px;
+  margin-bottom: 0.5rem;
+}
+.cd-unit__label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.countdown__sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 2rem;
+  max-width: 480px;
+  margin-left: auto; margin-right: auto;
+}
+
+
+
+/* =============================================================
+   SPONSORS
+   ============================================================= */
+.sponsors {
+  background: linear-gradient(180deg, var(--cream) 0%, #E8F4FF 100%);
+  color: var(--navy);
+  padding: 6rem 2rem;
+}
+.sponsors__inner { max-width: var(--max-w); margin: 0 auto; text-align: center; }
+.sponsors__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  letter-spacing: -0.03em;
+  color: var(--navy);
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+.sponsors__logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.sponsor-logo {
+  height: 48px;
+  opacity: 0.4;
+  filter: grayscale(1);
+  transition: opacity 0.3s, filter 0.3s;
+}
+.sponsor-logo:hover { opacity: 1; filter: grayscale(0); }
+
+/* =============================================================
+   FOOTER
+   ============================================================= */
+.footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 4rem 2rem 2rem;
+}
+.footer__inner {
+  max-width: var(--max-w); margin: 0 auto;
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 3rem;
+}
+.footer__brand img { height: 28px; margin-bottom: 1rem; mix-blend-mode: screen; }
+.footer__tagline { font-size: 0.9rem; color: rgba(255,255,255,0.4); max-width: 280px; line-height: 1.65; }
+.footer__col-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  color: rgba(255,255,255,0.7);
+}
+.footer__links { display: flex; flex-direction: column; gap: 0.6rem; }
+.footer__links a {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
+  transition: color 0.2s;
+}
+.footer__links a:hover { color: var(--white); }
+.footer__bottom {
+  max-width: var(--max-w); margin: 3rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.25);
+}
+
+/* =============================================================
+   STICKY COUNTDOWN WIDGET — appears on scroll, right side
+   ============================================================= */
+.sticky-widget {
+  position: fixed;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%) translateX(120%);
+  z-index: 90;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 16px;
+  padding: 1.2rem 1.4rem;
+  text-align: center;
+  transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  min-width: 170px;
+}
+.sticky-widget.visible {
+  transform: translateY(-50%) translateX(0);
+}
+.sticky-widget__label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(6,11,43,0.4);
+  margin-bottom: 0.6rem;
+}
+.sticky-widget__nums {
+  display: flex;
+  gap: 0.35rem;
+  justify-content: center;
+  margin-bottom: 0.8rem;
+}
+.sw-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--navy);
+  background: rgba(6,11,43,0.06);
+  border-radius: 6px;
+  padding: 0.3rem 0.45rem;
+  min-width: 32px;
+  line-height: 1;
+}
+.sw-sep {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: rgba(6,11,43,0.15);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.sticky-widget__free {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: var(--kiwi);
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+.sticky-widget__btn {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.72rem;
+  background: var(--superblue);
+  color: var(--white);
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.sticky-widget__btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(61,106,255,0.4);
+}
+
+/* =============================================================
+   REDUCED MOTION
+   ============================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .hero__blob,
+  .hero__piggy,
+  .modeB-blob,
+  .float-icon,
+  .badge-dot,
+  .marquee-arc svg {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* =============================================================
+   RESPONSIVE
+   ============================================================= */
+@media (max-width: 1024px) {
+  .keynote__inner { grid-template-columns: 1fr; gap: 2rem; }
+  .why-attend__cards { grid-template-columns: repeat(2, 1fr); }
+  .agenda__tracks { grid-template-columns: repeat(2, 1fr); }
+  .schedule-cutout__inner { grid-template-columns: 1fr; }
+  .speakers__mosaic { grid-template-columns: repeat(3, 1fr); }
+  .speakers__cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav__links { display: none; }
+  .nav__hamburger { display: block; margin-left: auto; }
+
+  .hero { min-height: 85vh; padding: 6rem 1.5rem 5rem; }
+  .hero__piggy { width: 160px; right: -2%; top: 5%; }
+
+  .stats__inner { grid-template-columns: repeat(2, 1fr); }
+
+  .why-attend__cards { grid-template-columns: 1fr; }
+
+  .community__grid { grid-template-columns: repeat(2, 1fr); }
+  .community__tile--tall { grid-row: span 1; min-height: 200px; }
+  .community__tile--wide { grid-column: span 1; }
+
+  .agenda__tracks { grid-template-columns: 1fr; }
+  .schedule-cutout__inner { grid-template-columns: 1fr; }
+  .schedule-cutout__visual { aspect-ratio: 16/9; }
+
+  .speakers__mosaic { grid-template-columns: repeat(2, 1fr); }
+  .speakers__cards { grid-template-columns: 1fr; }
+
+  .footer__inner { grid-template-columns: 1fr; gap: 2rem; }
+  .footer__bottom { flex-direction: column; gap: 0.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================= -->
+<!-- NAVIGATION                                                      -->
+<!-- ============================================================= -->
+<nav class="nav" id="mainNav">
+  <div class="nav__logo">
+    <img src="Intuit%20for%20Education%20Horizontal%20logo_White.png" alt="Intuit for Education">
+    <div class="nav__divider"></div>
+    <div class="nav__event">Virtual Educator<br>Conference</div>
+  </div>
+  <ul class="nav__links">
+    <li><a href="#agenda">Agenda</a></li>
+    <li><a href="#speakers">Speakers</a></li>
+    <li><a href="#why-attend">Why Attend</a></li>
+    <li><a href="#sponsors">Sponsors</a></li>
+    <li><a href="#" class="btn-nav">Register Free</a></li>
+  </ul>
+  <button class="nav__hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ============================================================= -->
+<!-- HERO — Mode A (Fuchsia Dominant, 6-Blob Animated System)        -->
+<!-- ============================================================= -->
+<section class="hero" id="hero">
+  <!-- Gradient base -->
+  <div class="hero__gradient"></div>
+  <!-- Noise overlay -->
+  <div class="hero__noise"></div>
+  <!-- 6 animated blobs -->
+  <div class="hero__blob hero__blob--1"></div>
+  <div class="hero__blob hero__blob--2"></div>
+  <div class="hero__blob hero__blob--3"></div>
+  <div class="hero__blob hero__blob--4"></div>
+  <div class="hero__blob hero__blob--5"></div>
+  <div class="hero__blob hero__blob--6"></div>
+
+  <!-- Single large 3D piggy bank — rocking -->
+  <div class="hero__piggy">
+    <img src="Icons%20to%20Use/piggy-bank.png" alt="" aria-hidden="true">
+  </div>
+
+  <!-- Hero content -->
+  <div class="hero__content">
+    <div class="hero__eyebrow">Virtual Educator Conference 2026</div>
+    <h1 class="hero__headline">Where Financial Education<br>Meets the <em>Future</em></h1>
+    <p class="hero__sub">Join thousands of educators for a free, immersive day of financial literacy sessions, hands-on workshops, and community connection.</p>
+    <div class="hero__badge">
+      <span class="badge-dot"></span>
+      Coming Soon &mdash; Save the Date
+    </div>
+    <div class="hero__ctas">
+      <a href="#" class="btn btn--primary">Register Free</a>
+      <a href="#agenda" class="btn btn--ghost">View Agenda</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- STATS BAR                                                       -->
+<!-- ============================================================= -->
+<section class="stats" id="stats">
+  <div class="stats__inner">
+    <div class="reveal">
+      <div class="stat__number" data-count="5000">0</div>
+      <div class="stat__label">Educators Expected</div>
+    </div>
+    <div class="reveal">
+      <div class="stat__number" data-count="20">0</div>
+      <div class="stat__label">Breakout Sessions</div>
+    </div>
+    <div class="reveal">
+      <div class="stat__number" data-count="4">0</div>
+      <div class="stat__label">Audience Tracks</div>
+    </div>
+    <div class="reveal">
+      <div class="stat__number" data-count="100">0</div>
+      <div class="stat__label">Percent Free</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- COUNTDOWN — Mode B (Tomato Dominant) — Near top for urgency     -->
+<!-- ============================================================= -->
+<section class="countdown-section" id="countdown">
+  <!-- Mode B animated blobs -->
+  <div class="modeB-blob modeB-blob--1"></div>
+  <div class="modeB-blob modeB-blob--2"></div>
+  <div class="modeB-blob modeB-blob--3"></div>
+  <div class="modeB-blob modeB-blob--4"></div>
+  <div class="countdown__inner">
+    <span class="section-label section-label--light">Mark Your Calendar</span>
+    <h2 class="countdown__headline">The Conference Is Coming</h2>
+    <div class="cd-units">
+      <div class="cd-unit"><span class="cd-unit__num" id="cdDays">--</span><span class="cd-unit__label">Days</span></div>
+      <div class="cd-unit"><span class="cd-unit__num" id="cdHours">--</span><span class="cd-unit__label">Hours</span></div>
+      <div class="cd-unit"><span class="cd-unit__num" id="cdMins">--</span><span class="cd-unit__label">Minutes</span></div>
+      <div class="cd-unit"><span class="cd-unit__num" id="cdSecs">--</span><span class="cd-unit__label">Seconds</span></div>
+    </div>
+    <p class="countdown__sub">Seats are unlimited but excitement is not. Register now and choose your track before the big day.</p>
+    <a href="#" class="btn btn--kiwi">Register Free</a>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- KEYNOTE SPOTLIGHT                                                -->
+<!-- ============================================================= -->
+<section class="keynote" id="keynote">
+  <div class="keynote__inner">
+    <div class="keynote__text reveal">
+      <span class="section-label section-label--light">Opening Keynote</span>
+      <h2 class="keynote__headline">A Day Built for Educators, by Educators</h2>
+      <p class="keynote__desc">The Virtual Educator Conference brings together financial literacy champions from every corner of education. From general classroom teachers to CTE specialists, higher ed faculty to district administrators, every track is designed for your world.</p>
+      <a href="#" class="btn btn--primary">Register Free</a>
+    </div>
+    <div class="keynote__visual reveal">
+      <img src="Placeholder%20Image%20for%20Grid/pexels-rdne-7092341.jpg" alt="Keynote speaker" style="object-position:center 48%;">
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- COMMUNITY PHOTO GRID                                            -->
+<!-- ============================================================= -->
+<section class="community" id="community">
+  <div class="community__header reveal">
+    <span class="section-label section-label--dark">The Community</span>
+    <h2 class="community__title">5,000+ Educators. One Mission.</h2>
+  </div>
+  <div class="community__grid">
+    <div class="community__tile community__tile--tall community__tile--placeholder tile-bg-1 reveal">
+      <img src="Placeholder%20Image%20for%20Grid/pexels-kampus-5940842.jpg" alt="Teacher in classroom" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 30%;opacity:0.7;">
+      <div class="tile-counter">
+        <div class="tile-counter__num" data-count="5000">0</div>
+        <div class="tile-counter__label">Educators Expected</div>
+      </div>
+    </div>
+    <div class="community__tile community__tile--placeholder tile-bg-2 reveal">
+      <img src="Placeholder%20Image%20for%20Grid/pexels-asoje-emprende-634827973-17501007.jpg" alt="Community workshop" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.7;">
+      <div class="tile-counter">
+        <div class="tile-counter__num" data-count="20">0</div>
+        <div class="tile-counter__label">Breakout Sessions</div>
+      </div>
+    </div>
+    <div class="community__tile community__tile--placeholder tile-bg-3 reveal">
+      <img src="Placeholder%20Image%20for%20Grid/pexels-hillaryfox-1595391.jpg" alt="Educators collaborating" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;">
+      <span class="tile-label">Higher Ed Faculty</span>
+    </div>
+    <div class="community__tile community__tile--placeholder tile-bg-4 reveal">
+      <img src="Placeholder%20Image%20for%20Grid/pexels-max-fischer-5212657.jpg" alt="Student in virtual classroom" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;">
+      <span class="tile-label">Workshop Moment</span>
+    </div>
+    <div class="community__tile community__tile--wide community__tile--placeholder tile-bg-5 reveal">
+      <img src="Placeholder%20Image%20for%20Grid/pexels-nappy-935943.jpg" alt="Financial literacy workshop" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:0.7;">
+      <div class="tile-counter">
+        <div class="tile-counter__num" data-count="4">0</div>
+        <div class="tile-counter__label">Dedicated Audience Tracks</div>
+      </div>
+    </div>
+    <div class="community__tile community__tile--placeholder tile-bg-6 reveal">
+      <img src="Placeholder%20Image%20for%20Grid/pexels-shvetsa-4226256.jpg" alt="Educator leading class" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.65;">
+      <div class="tile-counter">
+        <div class="tile-counter__num" data-count="50">0</div>
+        <div class="tile-counter__label">Partner Sessions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- WHY ATTEND — Mode B (Tomato Dominant)                           -->
+<!-- ============================================================= -->
+<section class="why-attend" id="why-attend">
+  <!-- Mode B animated blobs -->
+  <div class="modeB-blob modeB-blob--1"></div>
+  <div class="modeB-blob modeB-blob--2"></div>
+  <div class="modeB-blob modeB-blob--3"></div>
+  <div class="modeB-blob modeB-blob--4"></div>
+  <div class="why-attend__inner">
+    <div class="why-attend__header reveal">
+      <span class="section-label section-label--light">Why Attend</span>
+      <h2 class="why-attend__title">What You Will Walk Away With</h2>
+    </div>
+    <div class="why-attend__cards">
+      <div class="wa-card reveal">
+        <div class="wa-card__number">01</div>
+        <h3 class="wa-card__title">Hands-On Activities</h3>
+        <p class="wa-card__desc">Tax simulations, budgeting tools, credit and debt workshops you can bring directly into your classroom the next day.</p>
+      </div>
+      <div class="wa-card reveal">
+        <div class="wa-card__number">02</div>
+        <h3 class="wa-card__title">Track-Specific Content</h3>
+        <p class="wa-card__desc">Four dedicated rooms for General Teachers, CTE, Higher Ed, and Administrators. Every session speaks your language.</p>
+      </div>
+      <div class="wa-card reveal">
+        <div class="wa-card__number">03</div>
+        <h3 class="wa-card__title">Industry Certifications</h3>
+        <p class="wa-card__desc">CTE alignment, HEFWA competencies, and self-paced course highlights to advance your professional credentials.</p>
+      </div>
+      <div class="wa-card reveal">
+        <div class="wa-card__number">04</div>
+        <h3 class="wa-card__title">Real-World Tech Skills</h3>
+        <p class="wa-card__desc">QuickBooks training, AI-powered financial calculators, and digital tools your students will actually use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- AGENDA — Real Content from Event Brief                          -->
+<!-- ============================================================= -->
+<section class="agenda" id="agenda">
+  <div class="agenda__inner">
+    <div class="agenda__header reveal">
+      <span class="section-label section-label--dark">Event Agenda</span>
+      <h2 class="agenda__title">Your Day at a Glance</h2>
+      <p class="agenda__subtitle">Four dedicated tracks. 20+ breakout sessions. Choose the path that fits your role.</p>
+    </div>
+
+    <!-- Session type cards — lighter, simpler -->
+    <div class="agenda__tracks">
+      <div class="track-card track-card--blue reveal">
+        <span class="track-card__room" style="color: var(--superblue);">Blue Room</span>
+        <h3 class="track-card__title">General Teachers</h3>
+        <p class="track-card__sessions">Tax Activities, Budgeting Tools, Credit and Debt, Financial Discussions</p>
+        <span class="track-card__count">5 sessions</span>
+      </div>
+      <div class="track-card track-card--red reveal">
+        <span class="track-card__room" style="color: #C43A00;">Red Room</span>
+        <h3 class="track-card__title">CTE Teachers</h3>
+        <p class="track-card__sessions">CTE Alignment, QuickBooks for CTE, Self-Paced Courses, AI Calculators</p>
+        <span class="track-card__count">5 sessions</span>
+      </div>
+      <div class="track-card track-card--orange reveal">
+        <span class="track-card__room" style="color: #E87A00;">Orange Room</span>
+        <h3 class="track-card__title">Higher Education</h3>
+        <p class="track-card__sessions">FYE Budgeting, QuickBooks for Higher Ed, HEFWA Competencies, Partner Spotlight</p>
+        <span class="track-card__count">5 sessions</span>
+      </div>
+      <div class="track-card track-card--green reveal">
+        <span class="track-card__room" style="color: var(--kiwi);">Green Room</span>
+        <h3 class="track-card__title">Administrators</h3>
+        <p class="track-card__sessions">Admin-Focused Content, Partner Sessions, Leadership Discussions</p>
+        <span class="track-card__count">5 sessions</span>
+      </div>
+    </div>
+
+    <!-- Diamond floating — top left -->
+    <div class="float-icon float-icon--diamond" style="position:absolute;top:2rem;left:3rem;">
+      <img src="Icons%20to%20Use/diamond.png" alt="" aria-hidden="true">
+    </div>
+    <!-- Diamond floating — bottom right, opposite tilt -->
+    <div class="float-icon float-icon--diamond-2" style="position:absolute;bottom:2rem;right:3rem;">
+      <img src="Icons%20to%20Use/diamond.png" alt="" aria-hidden="true">
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="#" class="btn" style="background:var(--superblue);color:var(--white);">View Full Agenda</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- SCHEDULE CUTOUT — Dreamforce-style day layout                   -->
+<!-- ============================================================= -->
+<section class="schedule-cutout">
+  <div class="schedule-cutout__inner">
+    <div class="schedule-cutout__text reveal">
+      <span class="section-label section-label--dark">The Schedule</span>
+      <h2 class="schedule-cutout__title">It All Adds Up to One Unforgettable Day.</h2>
+
+      <div class="day-row">
+        <div class="day-row__name">Main Stage Opens</div>
+        <div class="day-row__desc">Welcome, engagement activity, and navigation support to get you started.</div>
+      </div>
+      <div class="day-row day-row--highlight">
+        <div class="day-row__name">Targeted Sessions</div>
+        <div class="day-row__desc">Join the room built for your audience: General Teachers, CTE, Higher Ed, or Admins.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-row__name">Breakout Sessions 1–4</div>
+        <div class="day-row__desc">Move freely between hands-on workshops: tax activities, QuickBooks, AI tools, budgeting, and more.</div>
+      </div>
+      <div class="day-row">
+        <div class="day-row__name">Main Stage Closing</div>
+        <div class="day-row__desc">Gamification results, calls to action, and post-event survey.</div>
+      </div>
+
+      <div class="schedule-cutout__cta">
+        <a href="#" class="btn" style="background:var(--superblue);color:var(--white);">Register Free</a>
+      </div>
+    </div>
+    <div class="schedule-cutout__visual reveal">
+      <img src="Placeholder%20Image%20for%20Grid/pexels-mikhail-nilov-9159042.jpg" alt="Educator presenting at conference" style="object-position:center 60%;">
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- SESSION GLIDESHOW                                               -->
+<!-- ============================================================= -->
+<section class="glide-section" id="sessions">
+  <div class="glide-header reveal">
+    <span class="section-label section-label--light">Featured Sessions</span>
+    <h2 class="glide-header__title">Explore What You Will Learn</h2>
+  </div>
+  <div class="glide-wrap">
+    <div class="glide-track" id="glideTrack">
+      <div class="glide-card glide-card--blue">
+        <img class="glide-card__img" src="Icons%20to%20Use/dollar-coin.png" alt="">
+        <span class="glide-card__tag tag--blue">Financial Literacy</span>
+        <h3 class="glide-card__title">Tax Activity Session</h3>
+        <p class="glide-card__desc">Walk through a real-world tax filing simulation designed for the general classroom.</p>
+      </div>
+      <div class="glide-card glide-card--orange">
+        <img class="glide-card__img" src="Icons%20to%20Use/piggy-bank.png" alt="">
+        <span class="glide-card__tag tag--orange">CTE</span>
+        <h3 class="glide-card__title">QuickBooks for CTE</h3>
+        <p class="glide-card__desc">Hands-on training with QuickBooks tailored for Career and Technical Education pathways.</p>
+      </div>
+      <div class="glide-card glide-card--cyan">
+        <img class="glide-card__img" src="Icons%20to%20Use/wallet.png" alt="">
+        <span class="glide-card__tag tag--cyan">Higher Ed</span>
+        <h3 class="glide-card__title">FYE Budgeting Activity</h3>
+        <p class="glide-card__desc">First-year experience budgeting workshop designed for university orientation programs.</p>
+      </div>
+      <div class="glide-card glide-card--green">
+        <img class="glide-card__img" src="Icons%20to%20Use/stacked-coins.png" alt="">
+        <span class="glide-card__tag tag--green">Pedagogy</span>
+        <h3 class="glide-card__title">Holding Financial Discussions</h3>
+        <p class="glide-card__desc">Strategies for leading productive, inclusive conversations about money in the classroom.</p>
+      </div>
+      <div class="glide-card glide-card--magenta">
+        <img class="glide-card__img" src="Icons%20to%20Use/diamond.png" alt="">
+        <span class="glide-card__tag tag--magenta">Technology</span>
+        <h3 class="glide-card__title">AI and Financial Calculators</h3>
+        <p class="glide-card__desc">Explore AI-powered financial tools and calculators that bring classroom concepts to life.</p>
+      </div>
+      <div class="glide-card glide-card--blue">
+        <img class="glide-card__img" src="Icons%20to%20Use/dollar-bill.png" alt="">
+        <span class="glide-card__tag tag--blue">Financial Literacy</span>
+        <h3 class="glide-card__title">Credit and Debt Activity</h3>
+        <p class="glide-card__desc">Interactive session on credit scores, debt management, and financial decision-making.</p>
+      </div>
+    </div>
+  </div>
+  <div class="glide-nav">
+    <button class="glide-arrow" id="glidePrev" aria-label="Previous">&larr;</button>
+    <div class="glide-dots" id="glideDots"></div>
+    <button class="glide-arrow" id="glideNext" aria-label="Next">&rarr;</button>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- SPEAKERS                                                        -->
+<!-- ============================================================= -->
+<section class="speakers" id="speakers">
+  <div class="speakers__inner">
+    <div class="speakers__header reveal">
+      <span class="section-label section-label--light">Meet the Speakers</span>
+      <h2 class="speakers__title">Experts in Financial Education</h2>
+    </div>
+
+    <!-- Speaker cards -->
+    <div class="speakers__cards">
+      <div class="sp-card reveal">
+        <div class="sp-card__avatar sp-card__avatar--placeholder" style="background:linear-gradient(135deg,var(--fuchsia),var(--superblue));width:100px;height:100px;border-radius:50%;margin:0 auto 1.2rem;">TBD</div>
+        <div class="sp-card__name">Speaker Name TBD</div>
+        <div class="sp-card__title">Opening Keynote</div>
+        <span class="sp-card__tag tag--blue">Keynote</span>
+      </div>
+      <div class="sp-card reveal">
+        <div class="sp-card__avatar sp-card__avatar--placeholder" style="background:linear-gradient(135deg,var(--agave),var(--kiwi));width:100px;height:100px;border-radius:50%;margin:0 auto 1.2rem;">TBD</div>
+        <div class="sp-card__name">Speaker Name TBD</div>
+        <div class="sp-card__title">CTE Alignment Lead</div>
+        <span class="sp-card__tag tag--orange">CTE</span>
+      </div>
+      <div class="sp-card reveal">
+        <div class="sp-card__avatar sp-card__avatar--placeholder" style="background:linear-gradient(135deg,var(--tomato),var(--cavendish));width:100px;height:100px;border-radius:50%;margin:0 auto 1.2rem;">TBD</div>
+        <div class="sp-card__name">Speaker Name TBD</div>
+        <div class="sp-card__title">Higher Ed Faculty</div>
+        <span class="sp-card__tag tag--cyan">Higher Ed</span>
+      </div>
+      <div class="sp-card reveal">
+        <div class="sp-card__avatar sp-card__avatar--placeholder" style="background:linear-gradient(135deg,var(--kiwi),var(--agave));width:100px;height:100px;border-radius:50%;margin:0 auto 1.2rem;">TBD</div>
+        <div class="sp-card__name">Speaker Name TBD</div>
+        <div class="sp-card__title">QuickBooks Trainer</div>
+        <span class="sp-card__tag tag--green">Technology</span>
+      </div>
+      <div class="sp-card reveal">
+        <div class="sp-card__avatar sp-card__avatar--placeholder" style="background:linear-gradient(135deg,var(--superblue),var(--fuchsia));width:100px;height:100px;border-radius:50%;margin:0 auto 1.2rem;">TBD</div>
+        <div class="sp-card__name">Speaker Name TBD</div>
+        <div class="sp-card__title">AI Tools Specialist</div>
+        <span class="sp-card__tag tag--magenta">Technology</span>
+      </div>
+      <div class="sp-card reveal">
+        <div class="sp-card__avatar sp-card__avatar--placeholder" style="background:linear-gradient(135deg,var(--watermelon),var(--tomato));width:100px;height:100px;border-radius:50%;margin:0 auto 1.2rem;">TBD</div>
+        <div class="sp-card__name">Speaker Name TBD</div>
+        <div class="sp-card__title">District Administrator</div>
+        <span class="sp-card__tag tag--green">Admin</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- CURVED TEXT MARQUEE — Oval container, Dreamforce-style           -->
+<!-- ============================================================= -->
+<section class="marquee-section">
+  <!-- Curved text — Dreamforce-identical: wide upward arc, repeating text, overflow hidden -->
+  <div class="marquee-arc" aria-hidden="true">
+    <svg viewBox="0 0 1694 674" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <path id="arcPath" d="M -847,643 Q 847,-329 2541,643" fill="none"/>
+      </defs>
+      <text>
+        <textPath id="arcText" href="#arcPath" startOffset="-200px">Invest In Your Classroom.&#x2003;&#x2003;Spend Your Time Teaching Students How to Save.&#x2003;&#x2003;Transform Financial Futures.&#x2003;&#x2003;Free to All Educators.&#x2003;&#x2003;Invest In Your Classroom.&#x2003;&#x2003;Spend Your Time Teaching Students How to Save.&#x2003;&#x2003;Transform Financial Futures.&#x2003;&#x2003;Free to All Educators.</textPath>
+      </text>
+    </svg>
+  </div>
+  <!-- Coins — centered below arc -->
+  <div class="float-icon float-icon--coins">
+    <img src="Icons%20to%20Use/stacked-coins.png" alt="" aria-hidden="true">
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- SOCIAL PROOF STATS — fills space above sponsors                 -->
+<!-- ============================================================= -->
+<section style="background:linear-gradient(180deg, var(--cream) 0%, #E8F0FF 100%);padding:0 2rem 5rem;text-align:center;">
+  <div style="max-width:var(--max-w);margin:0 auto;">
+    <h2 style="font-family:var(--font-display);font-weight:900;font-size:clamp(2rem,4.5vw,3rem);color:var(--navy);letter-spacing:-0.03em;margin-bottom:3rem;">The Data Is In. It's Worth Every Minute.</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;">
+      <div class="reveal">
+        <div style="font-family:var(--font-display);font-weight:900;font-size:clamp(2rem,4vw,3rem);color:var(--superblue);letter-spacing:-0.03em;line-height:1;margin-bottom:0.4rem;" data-count="97">0</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(6,11,43,0.4);">Satisfaction Rate</div>
+      </div>
+      <div class="reveal">
+        <div style="font-family:var(--font-display);font-weight:900;font-size:clamp(2rem,4vw,3rem);color:var(--superblue);letter-spacing:-0.03em;line-height:1;margin-bottom:0.4rem;" data-count="89">0</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(6,11,43,0.4);">Would Attend Again</div>
+      </div>
+      <div class="reveal">
+        <div style="font-family:var(--font-display);font-weight:900;font-size:clamp(2rem,4vw,3rem);color:var(--superblue);letter-spacing:-0.03em;line-height:1;margin-bottom:0.4rem;" data-count="92">0</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(6,11,43,0.4);">Found Content Actionable</div>
+      </div>
+      <div class="reveal">
+        <div style="font-family:var(--font-display);font-weight:900;font-size:clamp(2rem,4vw,3rem);color:var(--superblue);letter-spacing:-0.03em;line-height:1;margin-bottom:0.4rem;" data-count="4">0</div>
+        <div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(6,11,43,0.4);">Audience Tracks</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- SPONSORS                                                        -->
+<!-- ============================================================= -->
+<section class="sponsors" id="sponsors">
+  <div class="sponsors__inner">
+    <span class="section-label section-label--dark">Our Partners</span>
+    <h2 class="sponsors__title">Presented With Support From</h2>
+    <div class="sponsors__logos">
+      <!-- Placeholder sponsor logos — replace with real SVGs/PNGs -->
+      <div style="width:140px;height:48px;background:rgba(6,11,43,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.6rem;color:rgba(6,11,43,0.3);">SPONSOR</div>
+      <div style="width:140px;height:48px;background:rgba(6,11,43,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.6rem;color:rgba(6,11,43,0.3);">SPONSOR</div>
+      <div style="width:140px;height:48px;background:rgba(6,11,43,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.6rem;color:rgba(6,11,43,0.3);">SPONSOR</div>
+      <div style="width:140px;height:48px;background:rgba(6,11,43,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.6rem;color:rgba(6,11,43,0.3);">SPONSOR</div>
+      <div style="width:140px;height:48px;background:rgba(6,11,43,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.6rem;color:rgba(6,11,43,0.3);">SPONSOR</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- STICKY COUNTDOWN WIDGET — appears after scrolling past hero     -->
+<!-- ============================================================= -->
+<div class="sticky-widget" id="stickyWidget">
+  <div class="sticky-widget__label">Event Starts In</div>
+  <div class="sticky-widget__nums">
+    <span class="sw-num" id="swDays">--</span>
+    <span class="sw-sep">:</span>
+    <span class="sw-num" id="swHours">--</span>
+    <span class="sw-sep">:</span>
+    <span class="sw-num" id="swMins">--</span>
+    <span class="sw-sep">:</span>
+    <span class="sw-num" id="swSecs">--</span>
+  </div>
+  <div class="sticky-widget__free">Did we mention FREE?</div>
+  <a href="#" class="sticky-widget__btn">Register Now</a>
+</div>
+
+<!-- ============================================================= -->
+<!-- FOOTER                                                          -->
+<!-- ============================================================= -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <img src="Intuit%20for%20Education%20Horizontal%20logo_White.png" alt="Intuit for Education">
+      <p class="footer__tagline">The premier virtual gathering for financial education leaders. Free for all educators.</p>
+    </div>
+    <div>
+      <div class="footer__col-title">Navigate</div>
+      <div class="footer__links">
+        <a href="#hero">Home</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#speakers">Speakers</a>
+        <a href="#why-attend">Why Attend</a>
+        <a href="#sponsors">Partners</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer__col-title">Connect</div>
+      <div class="footer__links">
+        <a href="#">Register Free</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Intuit for Education</a>
+        <a href="#">FAQ</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>&copy; 2026 Intuit Inc. All rights reserved.</span>
+    <span>Privacy &middot; Terms &middot; Accessibility</span>
+  </div>
+</footer>
+
+<!-- ============================================================= -->
+<!-- JAVASCRIPT                                                      -->
+<!-- ============================================================= -->
+<script>
+(function() {
+  'use strict';
+
+  /* ---- Nav scroll effect ---- */
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- Scroll reveal (IntersectionObserver) ---- */
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(function(el, i) {
+      el.style.transitionDelay = (i % 4) * 0.1 + 's';
+      revealObs.observe(el);
+    });
+  } else {
+    reveals.forEach(function(el) { el.classList.add('visible'); });
+  }
+
+  /* ---- Animated counters (stats bar + tile counters) ---- */
+  function animateCounter(el) {
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    var duration = 1800;
+    var startTime = null;
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var progress = Math.min((timestamp - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = Math.floor(eased * target);
+      if (target >= 1000) {
+        el.textContent = current.toLocaleString() + '+';
+      } else if (target === 100) {
+        el.textContent = current + '%';
+      } else {
+        el.textContent = current + '+';
+      }
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  /* Observe all elements with data-count */
+  if ('IntersectionObserver' in window) {
+    var counterObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('[data-count]').forEach(function(el) {
+      counterObs.observe(el);
+    });
+  }
+
+  /* ---- Countdown timer (main + sticky widget) ---- */
+  // Placeholder date — replace with real event date
+  var eventDate = new Date('2026-10-15T09:00:00-07:00');
+  function updateCountdown() {
+    var now = new Date();
+    var diff = eventDate - now;
+    if (diff < 0) diff = 0;
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    // Main countdown
+    var dEl = document.getElementById('cdDays');
+    var hEl = document.getElementById('cdHours');
+    var mEl = document.getElementById('cdMins');
+    var sEl = document.getElementById('cdSecs');
+    if (dEl) dEl.textContent = String(d).padStart(2, '0');
+    if (hEl) hEl.textContent = String(h).padStart(2, '0');
+    if (mEl) mEl.textContent = String(m).padStart(2, '0');
+    if (sEl) sEl.textContent = String(s).padStart(2, '0');
+    // Sticky widget countdown
+    var swD = document.getElementById('swDays');
+    var swH = document.getElementById('swHours');
+    var swM = document.getElementById('swMins');
+    var swS = document.getElementById('swSecs');
+    if (swD) swD.textContent = String(d).padStart(2, '0');
+    if (swH) swH.textContent = String(h).padStart(2, '0');
+    if (swM) swM.textContent = String(m).padStart(2, '0');
+    if (swS) swS.textContent = String(s).padStart(2, '0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  /* ---- Animated oval text — orbit the textPath around the ellipse ---- */
+  var arcText = document.getElementById('arcText');
+  if (arcText && !prefersReducedMotion) {
+    var arcPx = -200;
+    function animateArc() {
+      arcPx += 0.5;
+      if (arcPx > 1200) arcPx = -200;
+      arcText.setAttribute('startOffset', arcPx + 'px');
+      requestAnimationFrame(animateArc);
+    }
+    requestAnimationFrame(animateArc);
+  }
+
+  /* ---- Sticky widget — show after scrolling past hero ---- */
+  var stickyWidget = document.getElementById('stickyWidget');
+  var heroSection = document.getElementById('hero');
+  if (stickyWidget && heroSection) {
+    window.addEventListener('scroll', function() {
+      var heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+      stickyWidget.classList.toggle('visible', window.scrollY > heroBottom);
+    });
+  }
+
+  /* ---- Glideshow (horizontal scroll with arrow/dot nav) ---- */
+  var track = document.getElementById('glideTrack');
+  var prevBtn = document.getElementById('glidePrev');
+  var nextBtn = document.getElementById('glideNext');
+  var dotsContainer = document.getElementById('glideDots');
+  if (track && prevBtn && nextBtn && dotsContainer) {
+    var cards = track.querySelectorAll('.glide-card');
+    var cardWidth = 320 + 32; // card width + gap
+    var currentSlide = 0;
+    var maxSlide = Math.max(0, cards.length - Math.floor(window.innerWidth / cardWidth));
+
+    // Build dots
+    for (var di = 0; di <= maxSlide; di++) {
+      var dot = document.createElement('div');
+      dot.className = 'glide-dot' + (di === 0 ? ' active' : '');
+      dot.setAttribute('data-slide', di);
+      dot.addEventListener('click', function() {
+        goToSlide(parseInt(this.getAttribute('data-slide'), 10));
+      });
+      dotsContainer.appendChild(dot);
+    }
+
+    function goToSlide(idx) {
+      currentSlide = Math.max(0, Math.min(idx, maxSlide));
+      track.style.transform = 'translateX(-' + (currentSlide * cardWidth) + 'px)';
+      var dots = dotsContainer.querySelectorAll('.glide-dot');
+      dots.forEach(function(d, i) {
+        d.classList.toggle('active', i === currentSlide);
+      });
+    }
+    prevBtn.addEventListener('click', function() { goToSlide(currentSlide - 1); });
+    nextBtn.addEventListener('click', function() { goToSlide(currentSlide + 1); });
+  }
+
+})();
+</script>
+
+<!-- Review overlay — comment pin system for stakeholder feedback -->
+<script src="review-overlay.js"></script>
+</body>
+</html>
