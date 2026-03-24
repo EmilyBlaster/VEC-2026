@@ -186,6 +186,9 @@
       '}',
       '.review-panel__resolve:hover { background: #3BD85E; color: #fff; }',
 
+      /* ---------- Hide sticky widget when panel is open ---------- */
+      'body.review-panel-open .sticky-widget { display: none !important; }',
+
       /* ---------- Toast notification ---------- */
       '.review-toast {',
       '  position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px);',
@@ -510,6 +513,7 @@
      COMMENT DETAIL PANEL
      ============================================================= */
   function closeCommentPanel() {
+    document.body.classList.remove('review-panel-open');
     var overlays = document.querySelectorAll('.review-panel-overlay');
     var panels = document.querySelectorAll('.review-panel');
     overlays.forEach(function (el) {
@@ -521,6 +525,11 @@
       setTimeout(function () { el.remove(); }, 350);
     });
     activePanel = null;
+  }
+
+  function openPanel(panel) {
+    document.body.classList.add('review-panel-open');
+    activePanel = panel;
   }
 
   function showCommentPanel(pinData, index) {
@@ -567,7 +576,7 @@
     ].join('');
 
     document.body.appendChild(panel);
-    activePanel = panel;
+    openPanel(panel);
 
     // Animate in
     requestAnimationFrame(function () {
@@ -698,7 +707,7 @@
     ].join('');
 
     document.body.appendChild(panel);
-    activePanel = panel;
+    openPanel(panel);
 
     // Animate in
     requestAnimationFrame(function () {
