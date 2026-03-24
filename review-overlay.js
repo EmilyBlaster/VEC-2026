@@ -53,7 +53,7 @@
       '}',
       '.review-toggle__icon { font-size: 16px; line-height: 1; }',
       '.review-toolbar {',
-      '  position: fixed; bottom: 24px; left: 24px; z-index: 10001;',
+      '  position: fixed; bottom: 76px; left: 24px; z-index: 10001;',
       '  display: none; flex-direction: column; gap: 10px; align-items: flex-start;',
       '}',
       'body.review-mode .review-toolbar { display: flex; }',
@@ -810,13 +810,19 @@
     });
 
     toolbar.appendChild(viewAll);
-    toolbar.appendChild(btn);
 
     // Stop all clicks inside toolbar from triggering page click
     toolbar.addEventListener('click', function (e) {
       e.stopPropagation();
     });
 
+    // Toggle button always visible (outside toolbar so it shows when review mode is off)
+    btn.style.position = 'fixed';
+    btn.style.bottom = '24px';
+    btn.style.left = '24px';
+    btn.style.zIndex = '10001';
+    btn.addEventListener('click', function (e) { e.stopPropagation(); });
+    document.body.appendChild(btn);
     document.body.appendChild(toolbar);
   }
 
