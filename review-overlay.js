@@ -516,16 +516,9 @@
      ============================================================= */
   function closeCommentPanel() {
     document.body.classList.remove('review-panel-open');
-    var overlays = document.querySelectorAll('.review-panel-overlay');
-    var panels = document.querySelectorAll('.review-panel');
-    overlays.forEach(function (el) {
-      el.classList.remove('review-panel-overlay--visible');
-      setTimeout(function () { el.remove(); }, 300);
-    });
-    panels.forEach(function (el) {
-      el.classList.remove('review-panel--visible');
-      setTimeout(function () { el.remove(); }, 350);
-    });
+    // Remove all panels and overlays immediately
+    document.querySelectorAll('.review-panel-overlay').forEach(function (el) { el.remove(); });
+    document.querySelectorAll('.review-panel').forEach(function (el) { el.remove(); });
     activePanel = null;
   }
 
@@ -542,9 +535,10 @@
     var overlay = document.createElement('div');
     overlay.className = 'review-panel-overlay';
     document.body.appendChild(overlay);
-    setTimeout(function () {
-      overlay.addEventListener('click', closeCommentPanel);
-    }, 100);
+    overlay.addEventListener('mousedown', function (e) {
+      e.stopPropagation();
+      closeCommentPanel();
+    });
 
     // Panel
     var panel = document.createElement('div');
@@ -580,14 +574,12 @@
     document.body.appendChild(panel);
     openPanel(panel);
 
-    // Animate in
-    requestAnimationFrame(function () {
-      overlay.classList.add('review-panel-overlay--visible');
-      panel.classList.add('review-panel--visible');
-    });
+    // Show immediately
+    overlay.classList.add('review-panel-overlay--visible');
+    panel.classList.add('review-panel--visible');
 
     // Close button
-    panel.querySelector('.js-close-panel').addEventListener('click', function (e) {
+    panel.querySelector('.js-close-panel').addEventListener('mousedown', function (e) {
       e.stopPropagation();
       e.preventDefault();
       closeCommentPanel();
@@ -646,9 +638,10 @@
     var overlay = document.createElement('div');
     overlay.className = 'review-panel-overlay';
     document.body.appendChild(overlay);
-    setTimeout(function () {
-      overlay.addEventListener('click', closeCommentPanel);
-    }, 100);
+    overlay.addEventListener('mousedown', function (e) {
+      e.stopPropagation();
+      closeCommentPanel();
+    });
 
     // Panel
     var panel = document.createElement('div');
@@ -711,14 +704,12 @@
     document.body.appendChild(panel);
     openPanel(panel);
 
-    // Animate in
-    requestAnimationFrame(function () {
-      overlay.classList.add('review-panel-overlay--visible');
-      panel.classList.add('review-panel--visible');
-    });
+    // Show immediately
+    overlay.classList.add('review-panel-overlay--visible');
+    panel.classList.add('review-panel--visible');
 
     // Close button
-    panel.querySelector('.js-close-panel').addEventListener('click', function (e) {
+    panel.querySelector('.js-close-panel').addEventListener('mousedown', function (e) {
       e.stopPropagation();
       e.preventDefault();
       closeCommentPanel();
