@@ -11,7 +11,7 @@
   /* =============================================================
      CONFIGURATION — Update APPS_SCRIPT_URL after deploying
      ============================================================= */
-  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzJ5g7jNFLZSy-2nrawGSqmeGiX9tW3sN-MjEqGPg-hzFoI8vg4EWUzGZ_53P1Wn9jrgA/exec';
+  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyghFcXzcnCo-BIAvh96Nh2DbH4hZqdy1OgmpUA2y-I5Qnx7QXNe1lsEdXP3Is2xqREEA/exec';
 
   /* =============================================================
      STATE
@@ -244,14 +244,30 @@
       return;
     }
 
-    fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).catch(function (err) {
-      console.error('[Review] Failed to save comment:', err);
+    // Use GET with URL params to avoid Workspace CORS/redirect issues with POST
+    var params = new URLSearchParams({
+      action: 'write',
+      timestamp: data.timestamp,
+      id: data.id,
+      author: data.author,
+      text: data.text,
+      pageX: data.pageX,
+      pageY: data.pageY,
+      sectionId: data.sectionId,
+      xPercent: data.xPercent,
+      yOffsetInSection: data.yOffsetInSection,
+      viewportWidth: data.viewportWidth,
+      resolved: data.resolved || false
     });
+
+    fetch(APPS_SCRIPT_URL + '?' + params.toString())
+      .then(function (res) { return res.json(); })
+      .then(function (result) {
+        console.log('[Review] Comment saved:', result);
+      })
+      .catch(function (err) {
+        console.error('[Review] Failed to save comment:', err);
+      });
   }
 
   /* =============================================================

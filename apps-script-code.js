@@ -5,10 +5,25 @@
  * for the VEC 2026 event site prototype.
  *
  * Deploy as: Web App > Execute as Me > Anyone can access
+ *
+ * Uses GET for both read and write to avoid Workspace CORS/redirect issues.
+ * - GET with no "action" param → returns all comments as JSON
+ * - GET with action=write → writes a new comment row
  */
 
-// Handle GET requests — return all comments as JSON
 function doGet(e) {
+  var params = e.parameter;
+
+  // If action=write, add a new comment
+  if (params.action === 'write') {
+    return writeComment(params);
+  }
+
+  // Otherwise, return all comments
+  return readComments();
+}
+
+function readComments() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Sheet1');
   var data = sheet.getDataRange().getValues();
 
@@ -34,7 +49,29 @@ function doGet(e) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
-// Handle POST requests — add a new comment row
+function writeComment(params) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Sheet1');
+
+  sheet.appendRow([
+    params.timestamp || new Date().toISOString(),
+    params.id || '',
+    params.author || 'Anonymous',
+    params.text || '',
+    params.pageX || 0,
+    params.pageY || 0,
+    params.sectionId || 'unknown',
+    params.xPercent || 0,
+    params.yOffsetInSection || 0,
+    params.viewportWidth || 0,
+    params.resolved || false
+  ]);
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'ok', id: params.id }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// Keep doPost as fallback
 function doPost(e) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Sheet1');
   var data = JSON.parse(e.postData.contents);
