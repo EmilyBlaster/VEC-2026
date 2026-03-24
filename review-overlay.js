@@ -186,6 +186,18 @@
       '}',
       '.review-panel__resolve:hover { background: #3BD85E; color: #fff; }',
 
+      /* ---------- Toast notification ---------- */
+      '.review-toast {',
+      '  position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px);',
+      '  z-index: 10006; background: #060B2B; color: #fff;',
+      '  padding: 12px 24px; border-radius: 12px;',
+      '  font-family: "DM Mono", monospace; font-size: 12px; letter-spacing: 0.05em;',
+      '  box-shadow: 0 8px 30px rgba(6,11,43,0.3);',
+      '  opacity: 0; transition: opacity 0.3s, transform 0.3s;',
+      '  pointer-events: none;',
+      '}',
+      '.review-toast--visible { opacity: 1; transform: translateX(-50%) translateY(0); }',
+
       /* ---------- Responsive ---------- */
       '@media (max-width: 768px) {',
       '  .review-popover { width: 280px; }',
@@ -588,6 +600,28 @@
   }
 
   /* =============================================================
+     TOAST NOTIFICATION
+     ============================================================= */
+  function showToast(message) {
+    var existing = document.querySelector('.review-toast');
+    if (existing) existing.remove();
+
+    var toast = document.createElement('div');
+    toast.className = 'review-toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    requestAnimationFrame(function () {
+      toast.classList.add('review-toast--visible');
+    });
+
+    setTimeout(function () {
+      toast.classList.remove('review-toast--visible');
+      setTimeout(function () { toast.remove(); }, 300);
+    }, 2500);
+  }
+
+  /* =============================================================
      ALL FEEDBACK PANEL
      ============================================================= */
   function showAllFeedbackPanel() {
@@ -737,22 +771,16 @@
     viewAll.addEventListener('click', function (e) {
       e.stopPropagation();
       e.preventDefault();
-      showAllFeedbackPanel();
-    });
-
-    var refresh = document.createElement('div');
-    refresh.className = 'review-toolbar__btn';
-    refresh.innerHTML = 'Check for New Feedback';
-    refresh.addEventListener('click', function (e) {
-      e.stopPropagation();
-      e.preventDefault();
+      // Fetch latest from Google Sheet, show toast, then open panel
       fetchComments(function () {
         renderAllPins();
+        var unresolvedCount = pins.filter(function (p) { return !p.resolved; }).length;
+        showToast(unresolvedCount > 0 ? unresolvedCount + ' comment' + (unresolvedCount !== 1 ? 's' : '') + ' found' : 'No feedback yet');
+        showAllFeedbackPanel();
       });
     });
 
     toolbar.appendChild(viewAll);
-    toolbar.appendChild(refresh);
     toolbar.appendChild(btn);
 
     // Stop all clicks inside toolbar from triggering page click
