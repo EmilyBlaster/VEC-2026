@@ -11,7 +11,7 @@
   /* =============================================================
      CONFIGURATION — Update APPS_SCRIPT_URL after deploying
      ============================================================= */
-  var APPS_SCRIPT_URL = '__REPLACE_WITH_YOUR_APPS_SCRIPT_URL__';
+  var APPS_SCRIPT_URL = 'https://script.google.com/a/macros/emilygreendesign.com/s/AKfycbzJ5g7jNFLZSy-2nrawGSqmeGiX9tW3sN-MjEqGPg-hzFoI8vg4EWUzGZ_53P1Wn9jrgA/exec';
 
   /* =============================================================
      STATE
