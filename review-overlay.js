@@ -41,6 +41,7 @@
 
       /* ---------- Toggle FAB ---------- */
       '.review-toggle {',
+      '  position: fixed; bottom: 24px; left: 24px; z-index: 10001;',
       '  display: flex; align-items: center; gap: 8px;',
       '  background: #060B2B; color: #fff; border: 2px solid rgba(255,255,255,0.15);',
       '  padding: 10px 20px; border-radius: 50px; cursor: pointer;',
@@ -800,13 +801,10 @@
     viewAll.addEventListener('click', function (e) {
       e.stopPropagation();
       e.preventDefault();
-      // Fetch latest from Google Sheet, show toast, then open panel
-      fetchComments(function () {
-        renderAllPins();
-        var unresolvedCount = pins.filter(function (p) { return !p.resolved; }).length;
-        showToast(unresolvedCount > 0 ? unresolvedCount + ' comment' + (unresolvedCount !== 1 ? 's' : '') + ' found' : 'No feedback yet');
-        showAllFeedbackPanel();
-      });
+      // Open panel immediately with cached data
+      var unresolvedCount = pins.filter(function (p) { return !p.resolved; }).length;
+      showToast(unresolvedCount > 0 ? unresolvedCount + ' comment' + (unresolvedCount !== 1 ? 's' : '') + ' found' : 'No feedback yet');
+      showAllFeedbackPanel();
     });
 
     toolbar.appendChild(viewAll);
@@ -817,10 +815,6 @@
     });
 
     // Toggle button always visible (outside toolbar so it shows when review mode is off)
-    btn.style.position = 'fixed';
-    btn.style.bottom = '24px';
-    btn.style.left = '24px';
-    btn.style.zIndex = '10001';
     btn.addEventListener('click', function (e) { e.stopPropagation(); });
     document.body.appendChild(btn);
     document.body.appendChild(toolbar);
