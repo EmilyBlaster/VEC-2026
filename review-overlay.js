@@ -581,12 +581,13 @@
     document.getElementById('reviewPanelClose').addEventListener('click', closeCommentPanel);
 
     // Resolve button
-    document.getElementById('reviewResolve').addEventListener('click', function () {
+    document.getElementById('reviewResolve').addEventListener('click', function (e) {
+      e.stopPropagation();
       pinData.resolved = true;
       localStorage.setItem('vec-review-pins', JSON.stringify(pins));
-      // Note: resolving on Google Sheet would need a separate endpoint
       closeCommentPanel();
       renderAllPins();
+      showToast('Comment resolved');
     });
 
     // Escape to close
@@ -716,10 +717,22 @@
           pin.resolved = true;
           localStorage.setItem('vec-review-pins', JSON.stringify(pins));
         }
-        closeCommentPanel();
+        // Remove this comment card from the panel with animation
+        var card = btn.closest('.review-panel__comment');
+        if (card) {
+          card.style.transition = 'opacity 0.3s, transform 0.3s';
+          card.style.opacity = '0';
+          card.style.transform = 'translateX(20px)';
+          setTimeout(function () { card.remove(); }, 300);
+        }
+        // Update pin on page
         renderAllPins();
-        // Reopen panel to show updated state
-        setTimeout(showAllFeedbackPanel, 100);
+        // Update the count in the header
+        var unresolvedCount = pins.filter(function (p) { return !p.resolved; }).length;
+        var resolvedCount = pins.filter(function (p) { return p.resolved; }).length;
+        var sectionEl = panel.querySelector('.review-panel__section');
+        if (sectionEl) sectionEl.textContent = unresolvedCount + ' open, ' + resolvedCount + ' resolved';
+        showToast('Comment resolved');
       });
     });
 
