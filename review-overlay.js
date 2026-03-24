@@ -62,6 +62,15 @@
       '}',
       '.review-toggle__refresh:hover { background: #1a1f4a; }',
       'body.review-mode .review-toggle__refresh { display: flex; }',
+      '.review-toggle__viewall {',
+      '  position: fixed; bottom: 24px; left: 380px; z-index: 10001;',
+      '  background: #060B2B; color: #fff; border: 2px solid rgba(255,255,255,0.15);',
+      '  padding: 8px 14px; border-radius: 50px; cursor: pointer;',
+      '  font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.08em;',
+      '  display: none; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.3);',
+      '}',
+      '.review-toggle__viewall:hover { background: #1a1f4a; }',
+      'body.review-mode .review-toggle__viewall { display: flex; }',
 
       /* ---------- Pin markers ---------- */
       '.review-pin {',
@@ -583,6 +592,129 @@
   }
 
   /* =============================================================
+     ALL FEEDBACK PANEL
+     ============================================================= */
+  function showAllFeedbackPanel() {
+    closeActivePopover();
+    closeCommentPanel();
+
+    // Overlay
+    var overlay = document.createElement('div');
+    overlay.className = 'review-panel-overlay';
+    overlay.addEventListener('click', closeCommentPanel);
+    document.body.appendChild(overlay);
+
+    // Panel
+    var panel = document.createElement('div');
+    panel.className = 'review-panel';
+
+    var unresolvedPins = pins.filter(function (p) { return !p.resolved; });
+    var resolvedPins = pins.filter(function (p) { return p.resolved; });
+
+    var commentsHTML = '';
+    if (unresolvedPins.length === 0 && resolvedPins.length === 0) {
+      commentsHTML = '<p style="color:#999;text-align:center;padding:2rem 0;font-size:14px;">No feedback yet. Click anywhere on the page to leave a comment.</p>';
+    } else {
+      unresolvedPins.forEach(function (pin, i) {
+        var timeStr = '';
+        try {
+          var d = new Date(pin.timestamp);
+          timeStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) +
+            ' at ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        } catch (e) { timeStr = pin.timestamp; }
+
+        commentsHTML += [
+          '<div class="review-panel__comment" style="cursor:pointer;" data-pin-index="' + i + '">',
+          '  <div style="display:flex;justify-content:space-between;align-items:center;">',
+          '    <div class="review-panel__author">' + pin.author + '</div>',
+          '    <span style="font-family:DM Mono,monospace;font-size:10px;letter-spacing:0.1em;color:#E523FF;background:rgba(229,35,255,0.08);padding:3px 8px;border-radius:6px;">' + (pin.sectionId || 'page') + '</span>',
+          '  </div>',
+          '  <div class="review-panel__time">' + timeStr + '</div>',
+          '  <div class="review-panel__text">' + pin.text.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>',
+          '  <button class="review-panel__resolve" style="margin-top:10px;" data-resolve-id="' + pin.id + '">Resolve</button>',
+          '</div>'
+        ].join('');
+      });
+
+      if (resolvedPins.length > 0) {
+        commentsHTML += '<div style="font-family:DM Mono,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin:24px 0 12px;text-align:center;">Resolved (' + resolvedPins.length + ')</div>';
+        resolvedPins.forEach(function (pin) {
+          commentsHTML += [
+            '<div class="review-panel__comment" style="opacity:0.5;">',
+            '  <div class="review-panel__author">' + pin.author + '</div>',
+            '  <div class="review-panel__text" style="text-decoration:line-through;">' + pin.text.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>',
+            '</div>'
+          ].join('');
+        });
+      }
+    }
+
+    panel.innerHTML = [
+      '<div class="review-panel__header">',
+      '  <div>',
+      '    <div class="review-panel__title">All Feedback</div>',
+      '    <div class="review-panel__section">' + unresolvedPins.length + ' open, ' + resolvedPins.length + ' resolved</div>',
+      '  </div>',
+      '  <button class="review-panel__close" id="reviewPanelClose">&times;</button>',
+      '</div>',
+      '<div class="review-panel__body">',
+      commentsHTML,
+      '</div>'
+    ].join('');
+
+    document.body.appendChild(panel);
+    activePanel = panel;
+
+    // Animate in
+    requestAnimationFrame(function () {
+      overlay.classList.add('review-panel-overlay--visible');
+      panel.classList.add('review-panel--visible');
+    });
+
+    // Close button
+    document.getElementById('reviewPanelClose').addEventListener('click', closeCommentPanel);
+
+    // Resolve buttons
+    panel.querySelectorAll('[data-resolve-id]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var pinId = btn.getAttribute('data-resolve-id');
+        var pin = pins.find(function (p) { return p.id === pinId; });
+        if (pin) {
+          pin.resolved = true;
+          localStorage.setItem('vec-review-pins', JSON.stringify(pins));
+        }
+        closeCommentPanel();
+        renderAllPins();
+        // Reopen panel to show updated state
+        setTimeout(showAllFeedbackPanel, 100);
+      });
+    });
+
+    // Click comment to scroll to pin
+    panel.querySelectorAll('[data-pin-index]').forEach(function (card) {
+      card.addEventListener('click', function (e) {
+        if (e.target.closest('.review-panel__resolve')) return;
+        var idx = parseInt(card.getAttribute('data-pin-index'));
+        var pin = unresolvedPins[idx];
+        if (pin) {
+          var pos = calculatePinPosition(pin);
+          window.scrollTo({ top: pos.y - 200, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Escape to close
+    function escHandler(e) {
+      if (e.key === 'Escape') {
+        closeCommentPanel();
+        document.removeEventListener('keydown', escHandler);
+      }
+    }
+    document.addEventListener('keydown', escHandler);
+  }
+
+  /* =============================================================
      REVIEW MODE TOGGLE
      ============================================================= */
   function createToggleButton() {
@@ -609,6 +741,15 @@
       });
     });
     document.body.appendChild(refresh);
+
+    // View All Feedback button
+    var viewAll = document.createElement('div');
+    viewAll.className = 'review-toggle__viewall';
+    viewAll.innerHTML = '&#x1F4CB; View All Feedback';
+    viewAll.addEventListener('click', function () {
+      showAllFeedbackPanel();
+    });
+    document.body.appendChild(viewAll);
   }
 
   function enableReviewMode() {
