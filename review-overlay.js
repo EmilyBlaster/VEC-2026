@@ -602,7 +602,7 @@
     // Refresh button
     var refresh = document.createElement('div');
     refresh.className = 'review-toggle__refresh';
-    refresh.innerHTML = '&#x21BB; Refresh Pins';
+    refresh.innerHTML = '&#x21BB; Check for New Feedback';
     refresh.addEventListener('click', function () {
       fetchComments(function () {
         renderAllPins();
