@@ -30,6 +30,10 @@
     '#FF5C37', // tomato
     '#3D6AFF', // superblue
     '#FF6C7A', // watermelon
+    '#6800B2', // eggplant 500
+    '#236CFF', // super blue 500
+    '#0F2C66', // super blue 900
+    '#2D004D', // eggplant 900
     '#FFE01B'  // cavendish
   ];
   var authorColorMap = {};
