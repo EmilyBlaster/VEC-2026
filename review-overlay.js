@@ -41,7 +41,6 @@
 
       /* ---------- Toggle FAB ---------- */
       '.review-toggle {',
-      '  position: fixed; bottom: 24px; left: 24px; z-index: 10001;',
       '  display: flex; align-items: center; gap: 8px;',
       '  background: #060B2B; color: #fff; border: 2px solid rgba(255,255,255,0.15);',
       '  padding: 10px 20px; border-radius: 50px; cursor: pointer;',
@@ -53,24 +52,19 @@
       '  background: #E523FF !important; border-color: #E523FF;',
       '}',
       '.review-toggle__icon { font-size: 16px; line-height: 1; }',
-      '.review-toggle__refresh {',
-      '  position: fixed; bottom: 72px; left: 24px; z-index: 10001;',
-      '  background: #060B2B; color: #fff; border: 2px solid rgba(255,255,255,0.15);',
-      '  padding: 8px 14px; border-radius: 50px; cursor: pointer;',
-      '  font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.08em;',
-      '  display: none; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.3);',
+      '.review-toolbar {',
+      '  position: fixed; bottom: 24px; left: 24px; z-index: 10001;',
+      '  display: none; flex-direction: column; gap: 10px; align-items: flex-start;',
       '}',
-      '.review-toggle__refresh:hover { background: #1a1f4a; }',
-      'body.review-mode .review-toggle__refresh { display: flex; }',
-      '.review-toggle__viewall {',
-      '  position: fixed; bottom: 120px; left: 24px; z-index: 10001;',
+      'body.review-mode .review-toolbar { display: flex; }',
+      '.review-toolbar__btn {',
       '  background: #060B2B; color: #fff; border: 2px solid rgba(255,255,255,0.15);',
-      '  padding: 8px 14px; border-radius: 50px; cursor: pointer;',
+      '  padding: 10px 18px; border-radius: 50px; cursor: pointer;',
       '  font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: 0.08em;',
-      '  display: none; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.3);',
+      '  transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.3);',
+      '  white-space: nowrap; user-select: none;',
       '}',
-      '.review-toggle__viewall:hover { background: #1a1f4a; }',
-      'body.review-mode .review-toggle__viewall { display: flex; }',
+      '.review-toolbar__btn:hover { background: #1a1f4a; transform: translateY(-2px); }',
 
       /* ---------- Pin markers ---------- */
       '.review-pin {',
@@ -526,8 +520,10 @@
     // Overlay
     var overlay = document.createElement('div');
     overlay.className = 'review-panel-overlay';
-    overlay.addEventListener('click', closeCommentPanel);
     document.body.appendChild(overlay);
+    setTimeout(function () {
+      overlay.addEventListener('click', closeCommentPanel);
+    }, 100);
 
     // Panel
     var panel = document.createElement('div');
@@ -601,8 +597,10 @@
     // Overlay
     var overlay = document.createElement('div');
     overlay.className = 'review-panel-overlay';
-    overlay.addEventListener('click', closeCommentPanel);
     document.body.appendChild(overlay);
+    setTimeout(function () {
+      overlay.addEventListener('click', closeCommentPanel);
+    }, 100);
 
     // Panel
     var panel = document.createElement('div');
@@ -729,27 +727,40 @@
         enableReviewMode();
       }
     });
-    document.body.appendChild(btn);
+    // Toolbar with action buttons
+    var toolbar = document.createElement('div');
+    toolbar.className = 'review-toolbar';
 
-    // Refresh button
+    var viewAll = document.createElement('div');
+    viewAll.className = 'review-toolbar__btn';
+    viewAll.innerHTML = 'View All Feedback';
+    viewAll.addEventListener('click', function (e) {
+      e.stopPropagation();
+      e.preventDefault();
+      showAllFeedbackPanel();
+    });
+
     var refresh = document.createElement('div');
-    refresh.className = 'review-toggle__refresh';
-    refresh.innerHTML = '&#x21BB; Check for New Feedback';
-    refresh.addEventListener('click', function () {
+    refresh.className = 'review-toolbar__btn';
+    refresh.innerHTML = 'Check for New Feedback';
+    refresh.addEventListener('click', function (e) {
+      e.stopPropagation();
+      e.preventDefault();
       fetchComments(function () {
         renderAllPins();
       });
     });
-    document.body.appendChild(refresh);
 
-    // View All Feedback button
-    var viewAll = document.createElement('div');
-    viewAll.className = 'review-toggle__viewall';
-    viewAll.innerHTML = '&#x1F4CB; View All Feedback';
-    viewAll.addEventListener('click', function () {
-      showAllFeedbackPanel();
+    toolbar.appendChild(viewAll);
+    toolbar.appendChild(refresh);
+    toolbar.appendChild(btn);
+
+    // Stop all clicks inside toolbar from triggering page click
+    toolbar.addEventListener('click', function (e) {
+      e.stopPropagation();
     });
-    document.body.appendChild(viewAll);
+
+    document.body.appendChild(toolbar);
   }
 
   function enableReviewMode() {
