@@ -157,10 +157,11 @@
       '  color: #E523FF; margin-top: 4px;',
       '}',
       '.review-panel__close {',
-      '  width: 32px; height: 32px; border-radius: 50%;',
-      '  background: #f5f5f5; border: none; cursor: pointer;',
-      '  font-size: 18px; color: #666; display: flex;',
+      '  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;',
+      '  background: #f0f0f0; border: 2px solid #ddd; cursor: pointer;',
+      '  font-size: 22px; color: #333; display: flex;',
       '  align-items: center; justify-content: center; transition: background 0.2s;',
+      '  position: relative; z-index: 10;',
       '}',
       '.review-panel__close:hover { background: #eee; }',
       '.review-panel__body { padding: 24px; }',
@@ -563,7 +564,7 @@
       '    <div class="review-panel__title">Comment #' + (index + 1) + '</div>',
       '    <div class="review-panel__section">' + (pinData.sectionId || 'page') + ' section</div>',
       '  </div>',
-      '  <button class="review-panel__close" id="reviewPanelClose">&times;</button>',
+      '  <button class="review-panel__close js-close-panel">&times;</button>',
       '</div>',
       '<div class="review-panel__body">',
       '  <div class="review-panel__comment">',
@@ -571,7 +572,7 @@
       '    <div class="review-panel__time">' + timeStr + '</div>',
       '    <div class="review-panel__text">' + pinData.text.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>',
       '  </div>',
-      '  <button class="review-panel__resolve" id="reviewResolve">Mark as Resolved</button>',
+      '  <button class="review-panel__resolve js-resolve-btn">Mark as Resolved</button>',
       '</div>'
     ].join('');
 
@@ -585,14 +586,14 @@
     });
 
     // Close button
-    document.getElementById('reviewPanelClose').addEventListener('click', function (e) {
+    panel.querySelector('.js-close-panel').addEventListener('click', function (e) {
       e.stopPropagation();
       e.preventDefault();
       closeCommentPanel();
     });
 
     // Resolve button
-    document.getElementById('reviewResolve').addEventListener('click', function (e) {
+    panel.querySelector('.js-resolve-btn').addEventListener('click', function (e) {
       e.stopPropagation();
       pinData.resolved = true;
       localStorage.setItem('vec-review-pins', JSON.stringify(pins));
@@ -699,7 +700,7 @@
       '    <div class="review-panel__title">All Feedback</div>',
       '    <div class="review-panel__section">' + unresolvedPins.length + ' open, ' + resolvedPins.length + ' resolved</div>',
       '  </div>',
-      '  <button class="review-panel__close" id="reviewPanelClose">&times;</button>',
+      '  <button class="review-panel__close js-close-panel">&times;</button>',
       '</div>',
       '<div class="review-panel__body">',
       commentsHTML,
@@ -716,7 +717,7 @@
     });
 
     // Close button
-    document.getElementById('reviewPanelClose').addEventListener('click', function (e) {
+    panel.querySelector('.js-close-panel').addEventListener('click', function (e) {
       e.stopPropagation();
       e.preventDefault();
       closeCommentPanel();
