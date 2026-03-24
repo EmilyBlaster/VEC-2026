@@ -510,19 +510,17 @@
      COMMENT DETAIL PANEL
      ============================================================= */
   function closeCommentPanel() {
-    if (activePanel) {
-      var overlay = document.querySelector('.review-panel-overlay');
-      var panel = document.querySelector('.review-panel');
-      if (overlay) {
-        overlay.classList.remove('review-panel-overlay--visible');
-        setTimeout(function () { overlay.remove(); }, 300);
-      }
-      if (panel) {
-        panel.classList.remove('review-panel--visible');
-        setTimeout(function () { panel.remove(); }, 350);
-      }
-      activePanel = null;
-    }
+    var overlays = document.querySelectorAll('.review-panel-overlay');
+    var panels = document.querySelectorAll('.review-panel');
+    overlays.forEach(function (el) {
+      el.classList.remove('review-panel-overlay--visible');
+      setTimeout(function () { el.remove(); }, 300);
+    });
+    panels.forEach(function (el) {
+      el.classList.remove('review-panel--visible');
+      setTimeout(function () { el.remove(); }, 350);
+    });
+    activePanel = null;
   }
 
   function showCommentPanel(pinData, index) {
@@ -578,7 +576,11 @@
     });
 
     // Close button
-    document.getElementById('reviewPanelClose').addEventListener('click', closeCommentPanel);
+    document.getElementById('reviewPanelClose').addEventListener('click', function (e) {
+      e.stopPropagation();
+      e.preventDefault();
+      closeCommentPanel();
+    });
 
     // Resolve button
     document.getElementById('reviewResolve').addEventListener('click', function (e) {
@@ -705,7 +707,11 @@
     });
 
     // Close button
-    document.getElementById('reviewPanelClose').addEventListener('click', closeCommentPanel);
+    document.getElementById('reviewPanelClose').addEventListener('click', function (e) {
+      e.stopPropagation();
+      e.preventDefault();
+      closeCommentPanel();
+    });
 
     // Resolve buttons
     panel.querySelectorAll('[data-resolve-id]').forEach(function (btn) {
